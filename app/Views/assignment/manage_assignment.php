@@ -49,8 +49,8 @@
                   <tr>
                   <td><?php echo $assignment['assignment_post_title']; ?></td>
                   <?php $ClassModel = new ClassModel(); $SubjectModel = new SubjectModel();?>
-                  <?php $subject = $SubjectModel->where('subject_id', $assignment['subject_id'])->first();?>
-                  <?php $class = $ClassModel->where('class_id', $assignment['class_id'])->first();?>
+                  <?php if($subject = $SubjectModel->where('subject_id', $assignment['subject_id'])->first()){?>
+                  <?php $class = $ClassModel->where('class_id', $assignment['class_id'])->first();}?>
                   <td><?php echo $class['class_name']; ?></td>
                   <td><?php echo $subject['subject_name']; ?></td>
                   <td><?php echo $assignment['assignment_post_due_date']; ?></td>

@@ -272,3 +272,36 @@ CRITICAL - 2024-05-21 22:34:26 --> Trying to access array offset on value of typ
 #7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #9 {main}
+CRITICAL - 2024-05-21 22:40:42 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\classroom\app\Views\assignment\manage_assignment.php(55): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\xampp\\htdocs...', 55)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('assignment/mana...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\AssignmentController.php(20): view('assignment/mana...', Array)
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AssignmentController->index()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AssignmentController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-05-21 22:40:48 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\classroom\app\Views\assignment\manage_assignment.php(55): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\xampp\\htdocs...', 55)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('assignment/mana...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\AssignmentController.php(20): view('assignment/mana...', Array)
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AssignmentController->index()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AssignmentController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2024-05-21 22:42:37 --> Undefined variable $class
+#0 C:\xampp\htdocs\classroom\app\Views\assignment\manage_assignment.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('assignment/mana...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\AssignmentController.php(20): view('assignment/mana...', Array)
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AssignmentController->index()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AssignmentController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
