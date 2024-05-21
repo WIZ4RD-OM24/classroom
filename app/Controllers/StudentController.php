@@ -17,7 +17,7 @@ class StudentController extends Controller
     {
         session();
         $StudentModel = new StudentModel();
-        $data['students'] = $StudentModel->orderBy('student_id', 'DESC')->findAll();
+        $data['students'] = $StudentModel->orderBy('student_id', 'ASC')->findAll();
         return view('student/manage_student',$data);
     }
 
@@ -38,6 +38,7 @@ class StudentController extends Controller
                 'student_roll_no' => $this->request->getVar('student_roll_no'),
                 'student_name' => $this->request->getVar('student_name'),
                 'student_email'  => $this->request->getVar('student_email'),
+                'student_password' => password_hash("student@123", PASSWORD_DEFAULT),
                 'class_id' => $this->request->getVar('class_id'),
                 'created_at'      => $date,
                 'updated_at' =>$date,
