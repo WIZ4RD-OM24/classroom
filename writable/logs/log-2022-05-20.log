@@ -1,0 +1,297 @@
+CRITICAL - 2022-05-20 00:16:23 --> Call to a member function where() on null
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/manage_...', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(18): view('subject/manage_...', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-20 00:17:10 --> Class 'TeacherModel' not found
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/manage_...', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(18): view('subject/manage_...', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-20 00:32:16 -->  is not a valid rule.
+#0 C:\xampp\htdocs\classroom\system\Validation\Validation.php(300): CodeIgniter\Validation\Exceptions\ValidationException::forRuleNotFound('')
+#1 C:\xampp\htdocs\classroom\system\Validation\Validation.php(157): CodeIgniter\Validation\Validation->processRules('userfile', 'Image File', NULL, Array, Array)
+#2 C:\xampp\htdocs\classroom\system\Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(128): CodeIgniter\Controller->validate(Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-20 00:32:49 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652986969_f4be...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(137): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 00:33:01 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652986981_7ced...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(137): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 00:33:54 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652987034_b2a3...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(137): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 00:37:25 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652987245_5b24...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(137): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 00:41:21 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652987481_11af...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(136): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 00:41:26 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652987486_86d9...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(136): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 00:42:26 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652987546_65e7...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(135): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 00:42:30 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652987550_1573...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(135): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 00:42:49 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652987569_06cc...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(135): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 00:46:11 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652987771_04f2...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(134): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 00:46:26 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(341): CodeIgniter\HTTP\Files\UploadedFile->move('C:\\xampp\\htdocs...', '1652987786_2f1d...')
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(134): CodeIgniter\HTTP\Files\UploadedFile->store()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 13:40:16 --> finfo_file(C:\xampp\tmp\php7AAB.tmp): failed to open stream: No such file or directory
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'finfo_file(C:\\x...', 'C:\\xampp\\htdocs...', 109, Array)
+#1 C:\xampp\htdocs\classroom\system\Files\File.php(109): finfo_file(Resource id #148, 'C:\\xampp\\tmp\\ph...')
+#2 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(302): CodeIgniter\Files\File->getMimeType()
+#3 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(291): CodeIgniter\HTTP\Files\UploadedFile->guessExtension()
+#4 C:\xampp\htdocs\classroom\system\Files\File.php(121): CodeIgniter\HTTP\Files\UploadedFile->getExtension()
+#5 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(338): CodeIgniter\Files\File->getRandomName()
+#6 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(152): CodeIgniter\HTTP\Files\UploadedFile->store()
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#8 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#9 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2022-05-20 14:03:31 --> Invalid file: subject/edit_subject.php
+#0 C:\xampp\htdocs\classroom\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('subject/edit_su...')
+#1 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/edit_su...', Array, true)
+#2 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(68): view('subject/edit_su...', Array)
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->SingleSubject('6')
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-20 14:21:59 --> Call to a member function isValid() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-20 15:03:02 --> Call to a member function isValid() on string
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-20 15:11:13 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(156): CodeIgniter\HTTP\Files\UploadedFile->move('uploads/', '1653039672_0144...')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-20 15:11:57 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(156): CodeIgniter\HTTP\Files\UploadedFile->move('uploads/', '1653039717_87e2...')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-20 15:15:35 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(156): CodeIgniter\HTTP\Files\UploadedFile->move('uploads/', '1653039935_3175...')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-20 15:15:58 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(156): CodeIgniter\HTTP\Files\UploadedFile->move('uploads/', '1653039958_1b57...')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-20 15:20:09 --> The original file is not a valid file.
+#0 C:\xampp\htdocs\classroom\system\HTTP\Files\UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(156): CodeIgniter\HTTP\Files\UploadedFile->move('uploads/', '1653040209_b65f...')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-20 15:39:08 --> unlink(uploads/): Is a directory
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(uploads/...', 'C:\\xampp\\htdocs...', 151, Array)
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(151): unlink('uploads/')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-20 15:39:46 --> unlink(uploads/): Is a directory
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(uploads/...', 'C:\\xampp\\htdocs...', 151, Array)
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(151): unlink('uploads/')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-20 15:43:03 --> unlink(uploads/): Is a directory
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(uploads/...', 'C:\\xampp\\htdocs...', 151, Array)
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(151): unlink('uploads/')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-20 15:47:33 --> unlink(uploads/): Is a directory
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(uploads/...', 'C:\\xampp\\htdocs...', 151, Array)
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(151): unlink('uploads/')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-20 15:52:02 --> unlink(uploads/): Is a directory
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(uploads/...', 'C:\\xampp\\htdocs...', 151, Array)
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(151): unlink('uploads/')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-20 16:09:22 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\subject\edit_subject.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 41, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/edit_su...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(67): view('subject/edit_su...', Array)
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->SingleSubject('6')
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-05-20 18:47:08 --> Class name must be a valid object or a string
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\NoticeController->add_notice()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NoticeController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-20 18:47:25 --> Class 'App\Controllers\NoticeModel' not found
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\NoticeController->add_notice()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NoticeController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-20 19:22:32 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\notice\add_notice.php(21): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 21, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('notice/add_noti...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\NoticeController.php(23): view('notice/add_noti...')
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\NoticeController->view_add_notice()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NoticeController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-05-20 19:24:06 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\notice\add_notice.php(21): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 21, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('notice/add_noti...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\NoticeController.php(23): view('notice/add_noti...', Array)
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\NoticeController->view_add_notice()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NoticeController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-05-20 23:35:23 --> Invalid file: notices/manage_notice.php
+#0 C:\xampp\htdocs\classroom\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('notices/manage_...')
+#1 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('notices/manage_...', Array, true)
+#2 C:\xampp\htdocs\classroom\app\Controllers\NoticeController.php(20): view('notices/manage_...', Array)
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\NoticeController->index()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NoticeController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}

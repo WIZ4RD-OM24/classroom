@@ -1,0 +1,27 @@
+ERROR - 2024-04-25 23:38:02 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-25 23:38:02 --> Call to a member function getFirstRow() on bool
+#0 C:\xampp\htdocs\classroom\system\BaseModel.php(622): CodeIgniter\Model->doFirst()
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(111): CodeIgniter\BaseModel->first()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->loginAuth()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+ERROR - 2024-04-25 23:38:59 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-25 23:38:59 --> Call to a member function getFirstRow() on bool
+#0 C:\xampp\htdocs\classroom\system\BaseModel.php(622): CodeIgniter\Model->doFirst()
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(111): CodeIgniter\BaseModel->first()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->loginAuth()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+ERROR - 2024-04-25 23:59:26 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-25 23:59:26 --> Call to a member function getFirstRow() on bool
+#0 C:\xampp\htdocs\classroom\system\BaseModel.php(622): CodeIgniter\Model->doFirst()
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(111): CodeIgniter\BaseModel->first()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->loginAuth()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}

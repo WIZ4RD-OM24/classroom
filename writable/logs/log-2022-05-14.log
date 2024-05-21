@@ -1,0 +1,115 @@
+CRITICAL - 2022-05-14 12:49:54 --> Call to a member function view() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->page()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 12:50:23 --> Call to a member function view() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->page()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 12:54:29 --> Call to a member function view() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->page()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 13:44:29 --> Invalid file: add-class.php
+#0 C:\xampp\htdocs\classroom\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('add-class.php')
+#1 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('add-class', Array, true)
+#2 C:\xampp\htdocs\classroom\app\Views\manage_class.php(32): view('add-class')
+#3 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#5 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#6 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(18): view('manage_class')
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#8 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#9 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+ERROR - 2022-05-14 14:45:15 --> Error connecting to the database: Access denied for user ''@'localhost' (using password: NO)
+CRITICAL - 2022-05-14 14:45:15 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)
+#0 C:\xampp\htdocs\classroom\system\Database\BaseConnection.php(577): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\classroom\system\Database\BaseBuilder.php(1771): CodeIgniter\Database\BaseConnection->query('INSERT INTO `cl...', Array, false)
+#2 C:\xampp\htdocs\classroom\system\Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#3 C:\xampp\htdocs\classroom\system\BaseModel.php(738): CodeIgniter\Model->doInsert(Array)
+#4 C:\xampp\htdocs\classroom\system\Model.php(625): CodeIgniter\BaseModel->insert(Array, true)
+#5 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(114): CodeIgniter\Model->insert(Array)
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->add_class()
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#8 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2022-05-14 14:46:03 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`class`, CONSTRAINT `class_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-14 14:46:41 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`class`, CONSTRAINT `class_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-14 14:48:20 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`class`, CONSTRAINT `class_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-14 14:51:11 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`class`, CONSTRAINT `class_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+CRITICAL - 2022-05-14 14:58:35 --> Call to a member function orderBy() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 14:58:38 --> Call to a member function orderBy() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 14:59:45 --> Call to a member function orderBy() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 15:00:36 --> Class name must be a valid object or a string
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 15:00:36 --> Class name must be a valid object or a string
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 15:00:37 --> Class name must be a valid object or a string
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 15:00:37 --> Class name must be a valid object or a string
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 15:00:37 --> Class name must be a valid object or a string
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-14 15:03:59 --> syntax error, unexpected end of file
+#0 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#1 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(19): view('manage_class', Array)
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2022-05-14 15:17:42 --> Invalid file: classes.php
+#0 C:\xampp\htdocs\classroom\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('classes.php')
+#1 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('classes', Array, true)
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(19): view('classes', Array)
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}

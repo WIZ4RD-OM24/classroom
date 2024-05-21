@@ -1,0 +1,47 @@
+CRITICAL - 2022-05-22 12:26:44 --> unlink(uploads/pfp/): Is a directory
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(uploads/...', 'C:\\xampp\\htdocs...', 151, Array)
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(151): unlink('uploads/pfp/')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->edit_profile()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-05-22 18:55:46 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\assignment\post_assignment.php(26): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 26, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('assignment/post...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\AssignmentController.php(21): view('assignment/post...')
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AssignmentController->view_post_assignment()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AssignmentController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2022-05-22 19:13:53 --> Column 'assignment_post_file' cannot be null
+ERROR - 2022-05-22 19:15:35 --> Column 'assignment_post_file' cannot be null
+ERROR - 2022-05-22 19:16:30 --> Column 'assignment_post_file' cannot be null
+ERROR - 2022-05-22 19:16:52 --> Column 'assignment_post_file' cannot be null
+CRITICAL - 2022-05-22 19:54:59 --> Class 'ClassModel' not found
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('assignment/mana...', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AssignmentController.php(23): view('assignment/mana...', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AssignmentController->index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AssignmentController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-22 19:57:44 --> Class 'ClassModel' not found
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('assignment/mana...', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AssignmentController.php(23): view('assignment/mana...', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AssignmentController->index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AssignmentController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2022-05-22 20:00:10 --> Column 'assignment_post_file' cannot be null
+ERROR - 2022-05-22 20:02:46 --> Column 'assignment_post_file' cannot be null
+ERROR - 2022-05-22 20:07:53 --> Column 'assignment_post_file' cannot be null
+ERROR - 2022-05-22 20:09:26 --> Column 'assignment_post_file' cannot be null

@@ -1,0 +1,30 @@
+CRITICAL - 2022-05-21 00:02:43 --> Function name must be a string
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('notice/manage_n...', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\NoticeController.php(20): view('notice/manage_n...', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\NoticeController->index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NoticeController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-21 00:07:45 --> Function name must be a string
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('notice/manage_n...', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\NoticeController.php(20): view('notice/manage_n...', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\NoticeController->index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NoticeController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-21 00:08:11 --> Function name must be a string
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('notice/manage_n...', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\NoticeController.php(20): view('notice/manage_n...', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\NoticeController->index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\NoticeController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}

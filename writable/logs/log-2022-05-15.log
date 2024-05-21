@@ -1,0 +1,232 @@
+CRITICAL - 2022-05-15 02:48:53 --> Class 'App\Controllers\SubjectModel' not found
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->subject_index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 02:56:46 --> Class 'App\Controllers\SubjectModel' not found
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->subject_index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 03:03:09 --> Call to a member function view() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\UploadController->index()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UploadController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 03:03:45 --> Call to a member function library() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\UploadController->do_upload()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UploadController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 03:31:46 --> Call to undefined function App\Controllers\force_download()
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\UploadController->download()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UploadController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 03:32:44 --> Call to undefined function App\Controllers\download()
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\UploadController->download()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UploadController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 03:33:16 --> Call to a member function download() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\UploadController->download()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UploadController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 03:36:10 --> Call to a member function download() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\UploadController->download()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UploadController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 03:39:15 --> File not found: ./writable/uploads/20220515/1652603221_21dbcbc5f646c7c8f37b.jpeg
+#0 C:\xampp\htdocs\classroom\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('./writable/uplo...')
+#1 C:\xampp\htdocs\classroom\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('./writable/uplo...', true)
+#2 C:\xampp\htdocs\classroom\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('./writable/uplo...')
+#3 C:\xampp\htdocs\classroom\app\Controllers\UploadController.php(52): CodeIgniter\HTTP\Response->download('1652603221_21db...', NULL)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\UploadController->download()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UploadController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 03:39:27 --> File not found: writable/uploads/20220515/1652603221_21dbcbc5f646c7c8f37b.jpeg
+#0 C:\xampp\htdocs\classroom\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('writable/upload...')
+#1 C:\xampp\htdocs\classroom\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('writable/upload...', true)
+#2 C:\xampp\htdocs\classroom\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('writable/upload...')
+#3 C:\xampp\htdocs\classroom\app\Controllers\UploadController.php(52): CodeIgniter\HTTP\Response->download('1652603221_21db...', NULL)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\UploadController->download()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UploadController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 03:40:13 --> File not found: /writable/uploads/20220515/1652603221_21dbcbc5f646c7c8f37b.jpeg
+#0 C:\xampp\htdocs\classroom\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('/writable/uploa...')
+#1 C:\xampp\htdocs\classroom\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('/writable/uploa...', true)
+#2 C:\xampp\htdocs\classroom\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('/writable/uploa...')
+#3 C:\xampp\htdocs\classroom\app\Controllers\UploadController.php(52): CodeIgniter\HTTP\Response->download('1652603221_21db...', NULL)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\UploadController->download()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UploadController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 03:40:25 --> File not found: /uploads/20220515/1652603221_21dbcbc5f646c7c8f37b.jpeg
+#0 C:\xampp\htdocs\classroom\system\Files\File.php(46): CodeIgniter\Files\Exceptions\FileNotFoundException::forFileNotFound('/uploads/202205...')
+#1 C:\xampp\htdocs\classroom\system\HTTP\DownloadResponse.php(107): CodeIgniter\Files\File->__construct('/uploads/202205...', true)
+#2 C:\xampp\htdocs\classroom\system\HTTP\ResponseTrait.php(774): CodeIgniter\HTTP\DownloadResponse->setFilePath('/uploads/202205...')
+#3 C:\xampp\htdocs\classroom\app\Controllers\UploadController.php(52): CodeIgniter\HTTP\Response->download('1652603221_21db...', NULL)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\UploadController->download()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\UploadController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 05:46:06 -->  route cannot be found while reverse-routing.
+#0 C:\xampp\htdocs\classroom\system\HTTP\RedirectResponse.php(56): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('')
+#1 C:\xampp\htdocs\classroom\system\Common.php(832): CodeIgniter\HTTP\RedirectResponse->route(false)
+#2 C:\xampp\htdocs\classroom\app\Views\manage_class.php(34): redirect('add_class')
+#3 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#5 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#6 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): view('manage_class', Array)
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#8 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#9 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2022-05-15 05:46:30 --> Call to a member function redirect() on null
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): view('manage_class', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 05:46:31 --> Call to a member function redirect() on null
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): view('manage_class', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 05:46:31 --> Call to a member function redirect() on null
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): view('manage_class', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 05:46:32 --> Call to a member function redirect() on null
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): view('manage_class', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 05:46:32 --> Call to a member function redirect() on null
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): view('manage_class', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 05:46:32 --> Call to a member function redirect() on null
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): view('manage_class', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 05:46:32 --> Call to a member function redirect() on null
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): view('manage_class', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 05:46:32 --> Call to a member function redirect() on null
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): view('manage_class', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 05:46:33 --> Call to a member function redirect() on null
+#0 C:\xampp\htdocs\classroom\system\View\View.php(210): include()
+#1 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#2 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('manage_class', Array, true)
+#3 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): view('manage_class', Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->class_index()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-15 09:12:51 --> Class 'App\Controllers\AdminModel' not found
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->add_admin()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 20:57:17 --> Call to undefined function App\Controllers\class_index()
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->loginAuth()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 20:57:35 --> Use of undefined constant class_index - assumed 'class_index' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(81): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 81, Array)
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->loginAuth()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-15 20:57:52 --> Call to undefined function App\Controllers\class_index()
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->loginAuth()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-15 20:58:20 --> Use of undefined constant AdminController - assumed 'AdminController' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(81): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 81, Array)
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->loginAuth()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-15 21:00:01 -->  route cannot be found while reverse-routing.
+#0 C:\xampp\htdocs\classroom\system\HTTP\RedirectResponse.php(56): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('')
+#1 C:\xampp\htdocs\classroom\system\Common.php(832): CodeIgniter\HTTP\RedirectResponse->route(false)
+#2 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(81): redirect('http://localhos...')
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->loginAuth()
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}

@@ -1,0 +1,259 @@
+ERROR - 2022-05-19 00:02:45 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:02:45 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:02:45 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:02:50 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:02:50 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:02:50 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:04:07 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:04:07 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:04:07 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:04:27 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:04:27 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:04:27 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:05:48 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:05:48 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:05:48 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:06:34 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:06:34 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:06:34 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:07:17 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:07:17 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:07:17 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:23:20 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:23:20 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:23:20 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+CRITICAL - 2022-05-19 00:23:20 -->  route cannot be found while reverse-routing.
+#0 C:\xampp\htdocs\classroom\system\HTTP\RedirectResponse.php(56): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('')
+#1 C:\xampp\htdocs\classroom\app\Controllers\CsvController.php(63): CodeIgniter\HTTP\RedirectResponse->route(false)
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\CsvController->importCsvToDb()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\CsvController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+ERROR - 2022-05-19 00:24:01 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:24:01 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:24:01 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:24:55 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:24:55 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:24:55 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:25:12 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:25:12 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:25:12 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:26:22 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:26:22 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:26:22 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:27:33 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:27:33 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:27:33 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:28:47 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:28:47 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:28:47 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:29:23 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:29:23 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:29:23 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:30:04 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:30:04 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:30:04 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:30:46 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:30:46 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:30:46 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:31:32 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:31:32 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:31:32 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:31:41 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:31:41 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:31:41 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:35:59 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:35:59 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:35:59 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:42:44 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:42:44 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:42:44 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:46:15 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:46:15 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:46:15 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:46:41 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:46:41 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 00:46:41 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:09:08 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:09:08 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:09:08 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:16:20 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:16:20 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:16:20 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:17:48 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:17:48 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:17:48 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:19:12 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:19:12 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:19:12 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:23:56 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:23:56 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:23:56 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:25:44 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:25:44 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:25:44 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:26:46 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:26:46 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:26:46 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:27:43 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:27:43 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:27:43 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:28:21 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:28:21 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+ERROR - 2022-05-19 11:28:21 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`student`, CONSTRAINT `student_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`))
+CRITICAL - 2022-05-19 12:23:50 -->  route cannot be found while reverse-routing.
+#0 C:\xampp\htdocs\classroom\system\HTTP\RedirectResponse.php(56): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidRedirectRoute('')
+#1 C:\xampp\htdocs\classroom\app\Controllers\StudentController.php(101): CodeIgniter\HTTP\RedirectResponse->route(false)
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->add_bulk_student()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+ERROR - 2022-05-19 12:32:12 --> Column 'admin_id' cannot be null
+ERROR - 2022-05-19 12:32:12 --> Column 'admin_id' cannot be null
+ERROR - 2022-05-19 12:32:12 --> Column 'admin_id' cannot be null
+ERROR - 2022-05-19 12:37:22 --> Column 'admin_id' cannot be null
+ERROR - 2022-05-19 12:37:22 --> Column 'admin_id' cannot be null
+ERROR - 2022-05-19 12:37:22 --> Column 'admin_id' cannot be null
+ERROR - 2022-05-19 12:50:21 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 12:50:55 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 12:51:17 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 12:51:42 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 12:54:02 --> Unknown column 'id' in 'where clause'
+CRITICAL - 2022-05-19 12:59:34 --> Call to a member function setflashdata() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->add_student()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+ERROR - 2022-05-19 12:59:57 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 13:00:01 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 13:00:05 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 13:02:15 --> Unknown column 'id' in 'where clause'
+CRITICAL - 2022-05-19 13:05:37 --> Call to a member function where() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->singleStudent('34')
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-19 13:06:56 --> Invalid file: view_student_profile_by_admin.php
+#0 C:\xampp\htdocs\classroom\system\View\View.php(198): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('view_student_pr...')
+#1 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('view_student_pr...', Array, true)
+#2 C:\xampp\htdocs\classroom\app\Controllers\StudentController.php(136): view('view_student_pr...', Array)
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->singleStudent('34')
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+ERROR - 2022-05-19 14:03:52 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 14:03:54 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 14:05:46 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 14:13:26 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 14:17:06 --> Unknown column 'id' in 'where clause'
+CRITICAL - 2022-05-19 14:20:08 --> Call to a member function delete() on array
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->delete_student('34')
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-19 14:20:32 --> Call to a member function delete() on array
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->delete_student('34')
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+ERROR - 2022-05-19 14:20:45 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 14:21:24 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 14:21:26 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 14:21:27 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 14:23:41 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 14:28:13 --> Unknown column 'id' in 'where clause'
+ERROR - 2022-05-19 14:30:32 --> Column 'created_at' cannot be null
+ERROR - 2022-05-19 14:30:45 --> Column 'created_at' cannot be null
+ERROR - 2022-05-19 14:31:31 --> Column 'created_at' cannot be null
+ERROR - 2022-05-19 14:31:31 --> Column 'created_at' cannot be null
+ERROR - 2022-05-19 14:31:31 --> Column 'created_at' cannot be null
+CRITICAL - 2022-05-19 23:14:36 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\subject\add_subject.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 41, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/add_sub...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(25): view('subject/add_sub...')
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->view_add_subject()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-05-19 23:16:35 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\subject\add_subject.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 41, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/add_sub...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(25): view('subject/add_sub...')
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->view_add_subject()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-05-19 23:40:01 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\subject\add_subject.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 41, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/add_sub...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(25): view('subject/add_sub...')
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->view_add_subject()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-05-19 23:46:17 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\subject\add_subject.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 41, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/add_sub...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(26): view('subject/add_sub...')
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->view_add_subject()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-05-19 23:46:20 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\subject\add_subject.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 41, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/add_sub...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(26): view('subject/add_sub...')
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->view_add_subject()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-05-19 23:46:55 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\subject\add_subject.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 41, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/add_sub...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(28): view('subject/add_sub...')
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->view_add_subject()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-05-19 23:46:58 --> Invalid argument supplied for foreach()
+#0 C:\xampp\htdocs\classroom\app\Views\subject\add_subject.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argumen...', 'C:\\xampp\\htdocs...', 41, Array)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('subject/add_sub...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\SubjectController.php(28): view('subject/add_sub...')
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->view_add_subject()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-05-19 23:52:13 --> Call to a member function setflashdata() on null
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\SubjectController->add_subject()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SubjectController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}

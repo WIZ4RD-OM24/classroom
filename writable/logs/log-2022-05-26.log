@@ -1,0 +1,36 @@
+CRITICAL - 2022-05-26 11:42:04 --> syntax error, unexpected '}'
+#0 C:\xampp\htdocs\classroom\system\Autoloader\Autoloader.php(241): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\classroom\system\Autoloader\Autoloader.php(219): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers...')
+#3 [internal function]: spl_autoload_call('App\\Controllers...')
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(797): class_exists('\\App\\Controller...', true)
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(406): CodeIgniter\CodeIgniter->startController()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2022-05-26 11:45:40 --> Class 'App\Controllers\AssignmentPostModel' not found
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->view_assignments()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-26 11:57:42 --> Object of class DateInterval could not be converted to string
+#0 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->view_assignments()
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2022-05-26 12:11:36 --> Illegal offset type
+#0 C:\xampp\htdocs\classroom\app\Controllers\StudentController.php(165): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal offset ...', 'C:\\xampp\\htdocs...', 165, Array)
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->view_assignments()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-05-26 12:11:53 --> Illegal offset type
+#0 C:\xampp\htdocs\classroom\app\Controllers\StudentController.php(164): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal offset ...', 'C:\\xampp\\htdocs...', 164, Array)
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->view_assignments()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

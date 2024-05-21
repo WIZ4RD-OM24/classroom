@@ -1,0 +1,155 @@
+ERROR - 2024-04-26 00:02:47 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-26 00:02:47 --> Call to a member function getFirstRow() on bool
+#0 C:\xampp\htdocs\classroom\system\BaseModel.php(622): CodeIgniter\Model->doFirst()
+#1 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(111): CodeIgniter\BaseModel->first()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->loginAuth()
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+ERROR - 2024-04-26 00:25:21 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-26 00:25:21 --> Call to a member function getRow() on bool
+#0 C:\xampp\htdocs\classroom\system\Validation\Validation.php(292): CodeIgniter\Validation\Rules->is_unique('poonam@gmail.co...', 'teacher_email', Array, NULL)
+#1 C:\xampp\htdocs\classroom\system\Validation\Validation.php(157): CodeIgniter\Validation\Validation->processRules('teacher_email', 'teacher_email', 'poonam@gmail.co...', Array, Array)
+#2 C:\xampp\htdocs\classroom\system\Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 C:\xampp\htdocs\classroom\app\Controllers\TeacherController.php(30): CodeIgniter\Controller->validate(Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\TeacherController->add_teacher()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TeacherController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2024-04-26 00:35:38 --> Unknown column 'student_email' in 'field list'
+ERROR - 2024-04-26 00:38:44 --> Unknown column 'student_email' in 'field list'
+CRITICAL - 2024-04-26 00:38:44 --> Undefined variable $session
+#0 C:\xampp\htdocs\classroom\app\Controllers\StudentController.php(39): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 39)
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->add_student()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2024-04-26 00:57:38 --> Column 'teacher_id' cannot be null
+ERROR - 2024-04-26 00:58:15 --> Cannot add or update a child row: a foreign key constraint fails (`classroom`.`notice`, CONSTRAINT `notice_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`))
+CRITICAL - 2024-04-26 00:58:51 --> Undefined variable $errors
+#0 C:\xampp\htdocs\classroom\app\Views\edit_admin_profile.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 23)
+#1 C:\xampp\htdocs\classroom\system\View\View.php(210): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\classroom\system\View\View.php(213): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\classroom\system\Common.php(1089): CodeIgniter\View\View->render('edit_admin_prof...', Array, true)
+#4 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(215): view('edit_admin_prof...', Array)
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->view_edit_admin_profile()
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#7 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+ERROR - 2024-04-26 02:12:45 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-26 02:12:45 --> Call to a member function getRow() on bool
+#0 C:\xampp\htdocs\classroom\system\Validation\Validation.php(292): CodeIgniter\Validation\Rules->is_unique('poonam@gmail.co...', 'teacher_email', Array, NULL)
+#1 C:\xampp\htdocs\classroom\system\Validation\Validation.php(157): CodeIgniter\Validation\Validation->processRules('teacher_email', 'teacher_email', 'poonam@gmail.co...', Array, Array)
+#2 C:\xampp\htdocs\classroom\system\Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 C:\xampp\htdocs\classroom\app\Controllers\TeacherController.php(30): CodeIgniter\Controller->validate(Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\TeacherController->add_teacher()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TeacherController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2024-04-26 02:39:18 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-26 02:39:18 --> Call to a member function getRow() on bool
+#0 C:\xampp\htdocs\classroom\system\Validation\Validation.php(292): CodeIgniter\Validation\Rules->is_unique('poonam@gmail.co...', 'teacher_email', Array, NULL)
+#1 C:\xampp\htdocs\classroom\system\Validation\Validation.php(157): CodeIgniter\Validation\Validation->processRules('teacher_email', 'teacher_email', 'poonam@gmail.co...', Array, Array)
+#2 C:\xampp\htdocs\classroom\system\Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 C:\xampp\htdocs\classroom\app\Controllers\TeacherController.php(30): CodeIgniter\Controller->validate(Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\TeacherController->add_teacher()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TeacherController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2024-04-26 02:41:25 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-26 02:41:25 --> Call to a member function getRow() on bool
+#0 C:\xampp\htdocs\classroom\system\Validation\Validation.php(292): CodeIgniter\Validation\Rules->is_unique('poonam@gmail.co...', 'teacher_email', Array, NULL)
+#1 C:\xampp\htdocs\classroom\system\Validation\Validation.php(157): CodeIgniter\Validation\Validation->processRules('teacher_email', 'teacher_email', 'poonam@gmail.co...', Array, Array)
+#2 C:\xampp\htdocs\classroom\system\Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 C:\xampp\htdocs\classroom\app\Controllers\TeacherController.php(30): CodeIgniter\Controller->validate(Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\TeacherController->add_teacher()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TeacherController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2024-04-26 02:46:59 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-26 02:46:59 --> Call to a member function getRow() on bool
+#0 C:\xampp\htdocs\classroom\system\Validation\Validation.php(292): CodeIgniter\Validation\Rules->is_unique('poonam@gmail.co...', 'teacher_email', Array, NULL)
+#1 C:\xampp\htdocs\classroom\system\Validation\Validation.php(157): CodeIgniter\Validation\Validation->processRules('teacher_email', 'teacher_email', 'poonam@gmail.co...', Array, Array)
+#2 C:\xampp\htdocs\classroom\system\Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 C:\xampp\htdocs\classroom\app\Controllers\TeacherController.php(30): CodeIgniter\Controller->validate(Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\TeacherController->add_teacher()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TeacherController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2024-04-26 02:47:27 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-26 02:47:27 --> Call to a member function getRow() on bool
+#0 C:\xampp\htdocs\classroom\system\Validation\Validation.php(292): CodeIgniter\Validation\Rules->is_unique('poonam@gmail.co...', 'teacher_email', Array, NULL)
+#1 C:\xampp\htdocs\classroom\system\Validation\Validation.php(157): CodeIgniter\Validation\Validation->processRules('teacher_email', 'teacher_email', 'poonam@gmail.co...', Array, Array)
+#2 C:\xampp\htdocs\classroom\system\Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 C:\xampp\htdocs\classroom\app\Controllers\TeacherController.php(30): CodeIgniter\Controller->validate(Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\TeacherController->add_teacher()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TeacherController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2024-04-26 02:47:37 --> Unknown column 'teacher_email' in 'where clause'
+CRITICAL - 2024-04-26 02:47:37 --> Call to a member function getRow() on bool
+#0 C:\xampp\htdocs\classroom\system\Validation\Validation.php(292): CodeIgniter\Validation\Rules->is_unique('poonam@gmail.co...', 'teacher_email', Array, NULL)
+#1 C:\xampp\htdocs\classroom\system\Validation\Validation.php(157): CodeIgniter\Validation\Validation->processRules('teacher_email', 'teacher_email', 'poonam@gmail.co...', Array, Array)
+#2 C:\xampp\htdocs\classroom\system\Controller.php(160): CodeIgniter\Validation\Validation->run()
+#3 C:\xampp\htdocs\classroom\app\Controllers\TeacherController.php(30): CodeIgniter\Controller->validate(Array)
+#4 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\TeacherController->add_teacher()
+#5 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\TeacherController))
+#6 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+ERROR - 2024-04-26 02:59:05 --> Unknown column 'student_email' in 'field list'
+CRITICAL - 2024-04-26 02:59:05 --> Undefined variable $session
+#0 C:\xampp\htdocs\classroom\app\Controllers\StudentController.php(39): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 39)
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->add_student()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2024-04-26 03:02:49 --> Undefined variable $session
+#0 C:\xampp\htdocs\classroom\app\Controllers\StudentController.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 25)
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->add_student()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2024-04-26 03:03:10 --> Unknown column 'student_email' in 'field list'
+ERROR - 2024-04-26 03:32:35 --> Unknown column 'student_email' in 'field list'
+CRITICAL - 2024-04-26 03:43:03 --> syntax error, unexpected variable "$pass"
+#0 C:\xampp\htdocs\classroom\system\Router\Router.php(175): CodeIgniter\Router\Router->autoRoute('AdminController...')
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(726): CodeIgniter\Router\Router->handle('AdminController...')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2024-04-26 03:51:21 --> Undefined array key "admin"
+#0 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 23)
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->index()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2024-04-26 03:52:06 --> Undefined array key "admin"
+#0 C:\xampp\htdocs\classroom\app\Controllers\AdminController.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 23)
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\AdminController->index()
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\AdminController))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+ERROR - 2024-04-26 12:19:58 --> Duplicate entry '0' for key 'PRIMARY'
+ERROR - 2024-04-26 12:21:42 --> Duplicate entry '0' for key 'PRIMARY'
+CRITICAL - 2024-04-26 12:26:56 --> Undefined array key "student_obj"
+#0 C:\xampp\htdocs\classroom\app\Controllers\StudentController.php(118): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 118)
+#1 C:\xampp\htdocs\classroom\system\CodeIgniter.php(832): App\Controllers\StudentController->delete_student('0')
+#2 C:\xampp\htdocs\classroom\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StudentController))
+#3 C:\xampp\htdocs\classroom\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\classroom\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
