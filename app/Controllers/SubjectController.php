@@ -50,17 +50,18 @@ class SubjectController extends Controller
     //edit subject
     public function edit_subject(){
         session();
+        $date = date('d-m-y h:i:s');
         $SubjectModel = new SubjectModel();
         $id = $this->request->getVar('subject_id');
         $data = [
             'subject_name'        => $this->request->getVar('subject_name'),
             'teacher_id'        => $this->request->getVar('teacher_id'),
             'updated_at'              =>$date,
-            'admin_id' => $_SESSION['admin_id']
+            'admin_id' => $_SESSION['admin']['admin_id']
         ];
-        print_r($data);
-      //  $SubjectModel->update($id, $data);
-        //return $this->response->redirect(base_url('/subjects'));
+        //print_r($data);
+      $SubjectModel->update($id, $data);
+        return $this->response->redirect(base_url('/subjects'));
     }  
     public function SingleSubject($id = null){
         session();

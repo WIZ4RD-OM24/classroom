@@ -52,11 +52,11 @@
                 <!-- /.card-header -->
                 <div class="card-body card-outline card-primary">
                   
-                   <?php echo $classwork['classwork_content'];?>   
+                   <?php echo $classwork['classwork_title'];?>   
                   
                 </div>  
                 <div class="card-footer inline">
-                  Uploaded by Omkar at <?= $classwork['created_at'];?>
+                  Uploaded by Gaurav at <?= $classwork['created_at'];?>
                   <div class="d-flex justify-content-end">
                   <a href="<?php echo base_url('/view-add-classwork');?>" class="btn btn-primary mb-2"><i class="fas fa-eye"></i></a>
                   <a href="<?php echo base_url('delete-classwork/'.$classwork['classwork_id']);?>" class="btn btn-danger mb-2"><i class="fas fa-trash"></i></a>

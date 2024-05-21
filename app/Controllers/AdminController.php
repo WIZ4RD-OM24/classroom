@@ -20,10 +20,17 @@ class AdminController extends Controller
         $StudentModel = new StudentModel();
         $SubjectModel = new SubjectModel();
         $TeacherModel = new TeacherModel();
-        $data['class_count']= $ClassModel->where('admin_id',$_SESSION['admin']['admin_id'])->countAllResults();
-        $data['student_count']= $StudentModel->where('admin_id',$_SESSION['admin']['admin_id'])->countAllResults();
-        $data['subject_count']= $SubjectModel->where('admin_id',$_SESSION['admin']['admin_id'])->countAllResults();
-        $data['teacher_count']= $TeacherModel->where('admin_id',$_SESSION['admin']['admin_id'])->countAllResults();
+        if(isset($_SESSION['admin'])){
+            $data['class_count']= $ClassModel->where('admin_id',$_SESSION['admin']['admin_id'])->countAllResults();
+            $data['student_count']= $StudentModel->where('admin_id',$_SESSION['admin']['admin_id'])->countAllResults();
+            $data['subject_count']= $SubjectModel->where('admin_id',$_SESSION['admin']['admin_id'])->countAllResults();
+            $data['teacher_count']= $TeacherModel->where('admin_id',$_SESSION['admin']['admin_id'])->countAllResults();
+        } elseif ($_SESSION['teacher']){
+                $data['class_count']= $ClassModel->where('admin_id',$_SESSION['teacher']['admin_id'])->countAllResults();
+                $data['student_count']= $StudentModel->where('admin_id',$_SESSION['teacher']['admin_id'])->countAllResults();
+                $data['subject_count']= $SubjectModel->where('admin_id',$_SESSION['teacher']['admin_id'])->countAllResults();
+                $data['teacher_count']= $TeacherModel->where('admin_id',$_SESSION['teacher']['admin_id'])->countAllResults();
+        }
         return view('admin_dashboard',$data);
 
     }

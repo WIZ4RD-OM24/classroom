@@ -39,15 +39,15 @@ class NoticeController extends Controller
 //         $class_id =$this->request->getVar('class_name');
 //         $class = $ClassModel->where('class_id',$class_id)->first();
        if($file->isValid() && !$file->hasMoved()){
-            $notice_content= $file->getRandomName();
-            $file->move('uploads/notices/',$notice_content);
+            $notice_file= $file->getRandomName();
+            $file->move('uploads/notices/',$notice_file);
         }else{
-            $notice_content = " ";
+            $notice_file = null;
         }
         $data = [
             'notice_title'    => $this->request->getVar('notice_title'),
             'notice_content'  => $this->request->getVar('notice_content'),
-            'notice_file'     => $notice_content,
+            'notice_file'     => $notice_file,
             'created_at'      => $date,
             'updated_at'      => $date,
             'admin_id'        => $_SESSION['admin']['admin_id'],
