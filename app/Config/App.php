@@ -7,23 +7,32 @@ use CodeIgniter\Config\BaseConfig;
 class App extends BaseConfig
 {
     /**
+     * Sentinel meaning "work it out from the request".
+     */
+    public const BASE_URL_AUTO = 'auto';
+
+    /**
      * --------------------------------------------------------------------------
      * Base Site URL
      * --------------------------------------------------------------------------
      *
-     * URL to your CodeIgniter root. Typically this will be your base URL,
-     * WITH a trailing slash:
+     * URL to your CodeIgniter root, WITH a trailing slash:
      *
      *    http://example.com/
      *
-     * If this is not set then CodeIgniter will try guess the protocol, domain
-     * and path to your installation. However, you should always configure this
-     * explicitly and never rely on auto-guessing, especially in production
-     * environments.
+     * Every asset, link and redirect the application emits is built from this,
+     * so a value that does not match how the site is actually reached leaves
+     * the page loading its stylesheet and scripts from somewhere that does not
+     * exist — the site renders as unstyled HTML. This used to be hard-coded to
+     * one developer's path, which broke the site for everybody else.
+     *
+     * Left as 'auto' it is derived from the incoming request, so the app works
+     * on whatever host and port it is served from with no configuration.
+     * Set `app.baseURL` in `.env` to pin it explicitly; that always wins.
      *
      * @var string
      */
-    public $baseURL = 'http://localhost/classroom/public';
+    public $baseURL = self::BASE_URL_AUTO;
 
     /**
      * --------------------------------------------------------------------------
@@ -461,4 +470,104 @@ class App extends BaseConfig
      * @var bool
      */
     public $CSPEnabled = false;
+
+    public function __construct()
+    {
+        // Runs first, so an explicit app.baseURL in .env or the environment
+        // overrides the property default and the check below leaves it alone.
+        parent::__construct();
+
+        if ($this->baseURL === self::BASE_URL_AUTO) {
+            // Commands, migrations and tests have no request to infer from.
+            $this->baseURL = (PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg')
+                ? 'http://localhost/'
+                : $this->detectBaseURL();
+        }
+
+        // CodeIgniter builds every URL as rtrim($baseURL, '/') . '/', but a
+        // missing slash still trips people up when reading the value back.
+        $this->baseURL = rtrim($this->baseURL, '/') . '/';
+    }
+
+    /**
+     * Work out the base URL from the current request.
+     *
+     * The Host header is attacker-controlled, and whatever lands here ends up
+     * in every generated link and asset URL. Guessing is therefore allowed
+     * only when the request came in on a loopback or private address, which is
+     * a developer running the site locally; a real hostname has to be stated
+     * in `.env`, and this says so instead of silently emitting URLs built from
+     * a forged header.
+     *
+     * This deliberately does not key off ENVIRONMENT: that constant is defined
+     * later in the boot sequence than the first config('App') call, and it
+     * defaults to 'production' whenever CI_ENVIRONMENT is unset — which would
+     * make a fresh checkout with no .env fail outright rather than just work.
+     */
+    private function detectBaseURL(): string
+    {
+        $host = (string) ($_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? '');
+
+        // Strip anything that cannot appear in a host:port pair, so a hostile
+        // header cannot smuggle in a path, a second URL, or a CR/LF.
+        $host = preg_replace('/[^A-Za-z0-9.\-:\[\]]/', '', $host) ?? '';
+
+        if (! self::isLocalHost($host)) {
+            throw new \RuntimeException(sprintf(
+                'app.baseURL is not configured, and it will only be guessed for local requests '
+                . '(this one arrived for host "%s"). Set it in your .env file, for example: '
+                . "app.baseURL = 'https://classroom.example.edu/'",
+                $host === '' ? 'unknown' : $host
+            ));
+        }
+
+        $https = (! empty($_SERVER['HTTPS']) && strtolower((string) $_SERVER['HTTPS']) !== 'off')
+            || (int) ($_SERVER['SERVER_PORT'] ?? 0) === 443;
+
+        // The directory index.php is served from, so this works whether the
+        // app sits at the document root or under a folder such as
+        // /classroom/public.
+        $path = str_replace('\\', '/', dirname((string) ($_SERVER['SCRIPT_NAME'] ?? '/index.php')));
+        $path = ($path === '/' || $path === '.' || $path === '') ? '' : '/' . trim($path, '/');
+
+        return ($https ? 'https' : 'http') . '://' . $host . $path . '/';
+    }
+
+    /**
+     * Is this host the machine the developer is sitting at?
+     *
+     * Proxy headers are ignored on purpose: X-Forwarded-Host would let a
+     * remote caller pretend to be local.
+     */
+    private static function isLocalHost(string $host): bool
+    {
+        if ($host === '') {
+            return false;
+        }
+
+        // Drop the port, and unwrap a bracketed IPv6 literal.
+        $name = preg_replace('/:\d+$/', '', $host) ?? $host;
+        $name = trim($name, '[]');
+        $name = strtolower($name);
+
+        if (in_array($name, ['localhost', '127.0.0.1', '::1', 'host.docker.internal'], true)) {
+            return true;
+        }
+
+        // Hostnames reserved for local development.
+        if (preg_match('/\.(test|localhost|local|internal)$/', $name) === 1) {
+            return true;
+        }
+
+        // RFC 1918 / loopback / link-local addresses.
+        if (filter_var($name, FILTER_VALIDATE_IP) !== false) {
+            return filter_var(
+                $name,
+                FILTER_VALIDATE_IP,
+                FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
+            ) === false;
+        }
+
+        return false;
+    }
 }
