@@ -34,6 +34,32 @@ Point your web server at the **`public/`** directory, not the project root —
 everything above `public/` (including `.env` and `writable/`) must stay
 unreachable over HTTP.
 
+### Windows with XAMPP
+
+XAMPP ships PHP but does not add it to `PATH`, which is why `php` on its own
+reports "not recognised". Either use the full path:
+
+```bash
+C:\xampp\php\php.exe spark migrate
+```
+
+or add it to `PATH` once, in a **new** terminal afterwards:
+
+```bash
+setx PATH "%PATH%;C:\xampp\php"
+```
+
+Start MySQL from the XAMPP control panel (or `C:\xampp\mysql\bin\mysqld.exe`)
+before migrating, and create the database:
+
+```bash
+C:\xampp\mysql\bin\mysql.exe -u root -e "CREATE DATABASE classroom CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+```
+
+To skip the database server entirely, use SQLite instead — uncomment the
+SQLite lines in `.env` and enable the extension, which XAMPP bundles but
+leaves off: remove the `;` from `;extension=sqlite3` in `C:\xampp\php\php.ini`.
+
 ### Demo accounts
 
 Created by `DemoSeeder`, for local use only:
@@ -57,6 +83,48 @@ scoped to the signed-in user's organisation.
 | Submit work | — | — | ✅ |
 | Own profile | ✅ | ✅ | ✅ |
 
+## Theming
+
+Appearance has two independent axes, both chosen by the reader and stored in
+their browser — nothing is saved against the account:
+
+- **Mode** — light, dark, or follow the operating system (which it tracks
+  live, not only at page load).
+- **Accent** — indigo, violet, teal, emerald, amber, rose or slate. The accent
+  drives the brand colour *and* the soft gradient wash behind the page.
+
+Both are applied by `app/Views/partials/theme_boot.php`, a short synchronous
+script in the `<head>`, so no page flashes the wrong theme before the
+stylesheet loads.
+
+Adding an accent means adding one block to `public/assets/css/app.css`:
+
+```css
+:root[data-accent="ocean"] {
+  --h: 205;          /* brand hue                                  */
+  --s: 70%;          /* brand saturation                           */
+  --l-solid: 42%;    /* optional: lightness on light surfaces      */
+  --l-deep: 34%;     /*           …and for text on light surfaces  */
+  --l-dark: 66%;     /* optional: lightness on dark surfaces       */
+  --wash-a: 205;     /* the two hues the background blends between */
+  --wash-b: 170;
+}
+```
+
+Nothing else in the sheet names a hue: every brand token is derived from those
+by varying lightness. The per-mode lightness values exist because the same
+colour cannot serve both surfaces — a blue that holds white text on white is
+nearly invisible on near-black, and a mid-lightness blue is the worst case,
+failing against white *and* dark text.
+
+`tests/app/AccentContrastTest.php` parses the stylesheet, rebuilds each derived
+colour and fails if any accent drops below WCAG AA (4.5:1) in either mode, so
+an unreadable theme cannot be added by accident. All fourteen accent/mode
+combinations currently measure 4.85:1 or better.
+
+The wash itself is a fixed pseudo-element behind everything, so cards and table
+rows keep their own opaque surface — the gradient never sits behind body text.
+
 ## Layout
 
 ```
@@ -70,13 +138,13 @@ app/
   Validation/      DateRules — see "Known gaps"
   Views/
     layouts/       app (signed in) and auth (signed out) shells
-    partials/      nav, alerts, icons, empty states, delete buttons
+    partials/      nav, alerts, icons, theme picker, empty states
   Database/
     Migrations/    the full schema
     Seeds/         DemoSeeder
 public/
-  assets/css/app.css   the whole design system, no framework
-  assets/js/app.js     theme, navigation, menus, confirmations
+  assets/css/app.css   the whole design system: tokens, accents, components
+  assets/js/app.js     theme picker, navigation, menus, confirmations
 tests/app/         the application's test suite
 ```
 
@@ -92,8 +160,8 @@ composer test           # or: vendor/bin/phpunit --testsuite App
 
 The suite runs against an in-memory SQLite database (the `tests` group in
 `app/Config/Database.php`), so it needs the `sqlite3` extension but no database
-server. It covers authentication, route-level access control, tenant isolation
-and upload validation.
+server. It covers authentication, route-level access control, tenant isolation,
+upload validation and theme contrast.
 
 ## Security notes
 

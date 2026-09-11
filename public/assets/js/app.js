@@ -8,37 +8,101 @@
   'use strict';
 
   /* ---------------------------------------------------------------------
-   * Theme: remembers the reader's choice, otherwise follows the OS.
-   * The initial value is applied by an inline script in the <head> so the
-   * page never flashes the wrong theme.
+   * Theme
+   *
+   * Two independent axes: the surface mode (light / dark / follow the OS)
+   * and the accent hue. Both are the reader's preference rather than the
+   * account's, so they live in localStorage and never reach the server.
+   *
+   * The stored values are applied by an inline script in the <head>, before
+   * first paint, so the page never flashes the wrong theme. Everything here
+   * only handles changes made after load.
    * ------------------------------------------------------------------- */
-  var THEME_KEY = 'classroom.theme';
+  var MODE_KEY = 'classroom.theme';
+  var ACCENT_KEY = 'classroom.accent';
+  var DEFAULT_ACCENT = 'indigo';
+  var ACCENTS = ['indigo', 'violet', 'teal', 'emerald', 'amber', 'rose', 'slate'];
 
-  function currentTheme() {
-    return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function read(key, fallback) {
+    try {
+      return localStorage.getItem(key) || fallback;
+    } catch (e) {
+      // Private browsing, or site data blocked.
+      return fallback;
+    }
   }
 
-  function applyTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
+  function write(key, value) {
     try {
-      localStorage.setItem(THEME_KEY, theme);
+      localStorage.setItem(key, value);
     } catch (e) {
-      /* Private browsing, or site data blocked — the theme just won't persist. */
+      // Not persisting is survivable; the choice still applies to this page.
     }
-    document.querySelectorAll('[data-theme-toggle]').forEach(function (btn) {
-      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-      btn.setAttribute('aria-pressed', String(theme === 'dark'));
+  }
+
+  /** 'light' | 'dark' | 'system' */
+  function storedMode() {
+    var mode = read(MODE_KEY, 'system');
+    return mode === 'light' || mode === 'dark' ? mode : 'system';
+  }
+
+  function resolveMode(mode) {
+    return mode === 'system' ? (darkQuery.matches ? 'dark' : 'light') : mode;
+  }
+
+  function applyMode(mode) {
+    document.documentElement.setAttribute('data-theme', resolveMode(mode));
+
+    document.querySelectorAll('[data-set-mode]').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-set-mode') === mode));
+    });
+  }
+
+  function applyAccent(accent) {
+    if (ACCENTS.indexOf(accent) === -1) {
+      accent = DEFAULT_ACCENT;
+    }
+    document.documentElement.setAttribute('data-accent', accent);
+
+    document.querySelectorAll('[data-set-accent]').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-set-accent') === accent));
     });
   }
 
   document.addEventListener('click', function (event) {
-    var toggle = event.target.closest('[data-theme-toggle]');
-    if (toggle) {
-      applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+    var modeBtn = event.target.closest('[data-set-mode]');
+    if (modeBtn) {
+      var mode = modeBtn.getAttribute('data-set-mode');
+      write(MODE_KEY, mode);
+      applyMode(mode);
+      return;
+    }
+
+    var accentBtn = event.target.closest('[data-set-accent]');
+    if (accentBtn) {
+      var accent = accentBtn.getAttribute('data-set-accent');
+      write(ACCENT_KEY, accent);
+      applyAccent(accent);
     }
   });
 
-  applyTheme(currentTheme());
+  // While following the OS, track it live rather than only at page load.
+  var onSystemChange = function () {
+    if (storedMode() === 'system') {
+      applyMode('system');
+    }
+  };
+
+  if (typeof darkQuery.addEventListener === 'function') {
+    darkQuery.addEventListener('change', onSystemChange);
+  } else if (typeof darkQuery.addListener === 'function') {
+    darkQuery.addListener(onSystemChange); // Safari < 14
+  }
+
+  applyMode(storedMode());
+  applyAccent(read(ACCENT_KEY, DEFAULT_ACCENT));
 
   /* ---------------------------------------------------------------------
    * Mobile navigation
