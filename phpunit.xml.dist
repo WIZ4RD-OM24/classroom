@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="system/Test/bootstrap.php"
+         backupGlobals="false"
+         beStrictAboutOutputDuringTests="true"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnError="false"
+         stopOnFailure="false">
+
+  <testsuites>
+    <testsuite name="App">
+      <directory>./tests/app</directory>
+    </testsuite>
+  </testsuites>
+
+  <coverage>
+    <include>
+      <directory suffix=".php">./app</directory>
+    </include>
+    <exclude>
+      <directory>./app/Views</directory>
+      <directory>./app/Config</directory>
+    </exclude>
+  </coverage>
+
+  <php>
+    <server name="app.baseURL" value="http://localhost:8080/"/>
+    <!-- The `tests` group in Config\Database is an in-memory SQLite database. -->
+    <env name="CI_ENVIRONMENT" value="testing"/>
+
+    <!--
+      CodeIgniter 4.1.9 predates PHP 8.2 and its own test harness
+      (system/Test/DOMParser.php) calls mb_convert_encoding() with HTML
+      entities, which 8.2 deprecates. CodeIgniter's error handler turns that
+      notice into an ErrorException and fails any test that receives an HTML
+      200. Deprecations are excluded here so the suite reports application
+      failures rather than framework ones; see the "Known gaps" section of the
+      README for the underlying upgrade.
+    -->
+    <ini name="error_reporting" value="E_ALL &amp; ~E_DEPRECATED &amp; ~E_USER_DEPRECATED"/>
+  </php>
+</phpunit>

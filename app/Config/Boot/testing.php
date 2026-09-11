@@ -8,7 +8,16 @@
  | make sure they don't make it to production. And save us hours of
  | painful debugging.
  */
-error_reporting(-1);
+/*
+ | Everything except deprecations. CodeIgniter 4.1.9 predates PHP 8.2 and its
+ | own test harness (system/Test/DOMParser.php) calls mb_convert_encoding()
+ | with 'HTML-ENTITIES', which 8.2 deprecates; CodeIgniter's error handler
+ | promotes that notice to an ErrorException and fails every test that
+ | receives an HTML 200 response. Excluding E_DEPRECATED keeps the suite
+ | reporting application failures rather than framework ones. See "Known gaps"
+ | in the README for the underlying framework upgrade.
+ */
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 ini_set('display_errors', '1');
 
 /*

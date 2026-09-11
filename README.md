@@ -1,93 +1,154 @@
-# CodeIgniter 4 Development
+# Classroom
 
-[![Build Status](https://github.com/codeigniter4/CodeIgniter4/workflows/PHPUnit/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions?query=workflow%3A%22PHPUnit%22)
-[![Coverage Status](https://coveralls.io/repos/github/codeigniter4/CodeIgniter4/badge.svg?branch=develop)](https://coveralls.io/github/codeigniter4/CodeIgniter4?branch=develop)
-[![Downloads](https://poser.pugx.org/codeigniter4/framework/downloads)](https://packagist.org/packages/codeigniter4/framework)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/codeigniter4/CodeIgniter4)](https://packagist.org/packages/codeigniter4/framework)
-[![GitHub stars](https://img.shields.io/github/stars/codeigniter4/CodeIgniter4)](https://packagist.org/packages/codeigniter4/framework)
-[![GitHub license](https://img.shields.io/github/license/codeigniter4/CodeIgniter4)](https://github.com/codeigniter4/CodeIgniter4/blob/develop/LICENSE)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/codeigniter4/CodeIgniter4/pulls)
-<br>
+A classroom management application for schools and colleges, built on
+CodeIgniter 4. Administrators set up classes, subjects, teachers and students;
+teachers post assignments, classwork and notices; students see what is due for
+their class and submit their work.
 
-## What is CodeIgniter?
+---
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+## Requirements
 
-This repository holds the source code for CodeIgniter 4 only.
-Version 4 is a complete rewrite to bring the quality and the code into a more modern version,
-while still keeping as many of the things intact that has made people love the framework over the years.
+- PHP 8.0 or later, with `intl`, `mbstring`, `json`, `curl` and either
+  `mysqli` or `sqlite3`
+- MySQL 5.7+ / MariaDB 10.3+ (or SQLite for local work)
+- Composer
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+## Getting started
 
-### Documentation
+```bash
+composer install
+cp env .env
+```
 
-The [User Guide](https://codeigniter4.github.io/userguide/) is the primary documentation for CodeIgniter 4.
+Edit `.env` and set `app.baseURL` and the `database.default.*` values, then
+create the schema and, optionally, a demo tenant to click around in:
 
-The current **in-progress** User Guide can be found [here](https://codeigniter4.github.io/CodeIgniter4/).
-As with the rest of the framework, it is a work in progress, and will see changes over time to structure, explanations, etc.
+```bash
+php spark migrate
+php spark db:seed DemoSeeder
+php spark serve
+```
 
-You might also be interested in the [API documentation](https://codeigniter4.github.io/api/) for the framework components.
+Point your web server at the **`public/`** directory, not the project root —
+everything above `public/` (including `.env` and `writable/`) must stay
+unreachable over HTTP.
 
-## Important Change with index.php
+### Demo accounts
 
-index.php is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+Created by `DemoSeeder`, for local use only:
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+| Role    | Email                  | Password      |
+| ------- | ---------------------- | ------------- |
+| Admin   | `admin@classroom.test` | `admin@123`   |
+| Teacher | `anil@classroom.test`  | `teacher@123` |
+| Student | `rahul@classroom.test` | `student@123` |
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## Roles
 
-## Repository Management
+Every record belongs to an organisation (an `admin_id`), and every query is
+scoped to the signed-in user's organisation.
 
-CodeIgniter is developed completely on a volunteer basis. As such, please give up to 7 days
-for your issues to be reviewed. If you haven't heard from one of the team in that time period,
-feel free to leave a comment on the issue so that it gets brought back to our attention.
+| | Admin | Teacher | Student |
+| --- | :---: | :---: | :---: |
+| Classes, subjects, teachers, students | ✅ | ✅ | — |
+| Post assignments, classwork, notices | ✅ | ✅ | — |
+| View assignments, classwork, notices | all | all | own class |
+| Submit work | — | — | ✅ |
+| Own profile | ✅ | ✅ | ✅ |
 
-We use GitHub issues to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+## Layout
 
-If you raise an issue here that pertains to support or a feature request, it will
-be closed! If you are not sure if you have found a bug, raise a thread on the forum first -
-someone else may have encountered the same thing.
+```
+app/
+  Controllers/     one per resource, thin; all extend BaseController
+  Models/          extend App\Models\BaseModel, which adds tenant scoping
+  Libraries/
+    Auth.php       sign-in and the current identity, for all three roles
+    FileStore.php  validated uploads, stored outside the web root
+  Filters/         auth, role and guest route guards
+  Validation/      DateRules — see "Known gaps"
+  Views/
+    layouts/       app (signed in) and auth (signed out) shells
+    partials/      nav, alerts, icons, empty states, delete buttons
+  Database/
+    Migrations/    the full schema
+    Seeds/         DemoSeeder
+public/
+  assets/css/app.css   the whole design system, no framework
+  assets/js/app.js     theme, navigation, menus, confirmations
+tests/app/         the application's test suite
+```
 
-Before raising a new GitHub issue, please check that your bug hasn't already
-been reported or fixed.
+Uploaded files live in `writable/uploads/{organisation}/{category}/` and are
+served only by `FileController`, which checks the session and the owning
+organisation before streaming a file.
 
-We use pull requests (PRs) for CONTRIBUTIONS to the repository.
-We are looking for contributions that address one of the reported bugs or
-approved work packages.
+## Running the tests
 
-Do not use a PR as a form of feature request.
-Unsolicited contributions will only be considered if they fit nicely
-into the framework roadmap.
-Remember that some components that were part of CodeIgniter 3 are being moved
-to optional packages, with their own repository.
+```bash
+composer test           # or: vendor/bin/phpunit --testsuite App
+```
 
-## Contributing
+The suite runs against an in-memory SQLite database (the `tests` group in
+`app/Config/Database.php`), so it needs the `sqlite3` extension but no database
+server. It covers authentication, route-level access control, tenant isolation
+and upload validation.
 
-We **are** accepting contributions from the community!
+## Security notes
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/README.md).
+The application enforces the following, and `tests/app` asserts each of them:
 
-## Server Requirements
+- **Passwords are verified for all three roles.** Earlier versions had the
+  `password_verify()` call commented out on the student branch, so any student
+  email address signed in with any password.
+- **Auto-routing is off.** Every route is declared in `app/Config/Routes.php`.
+  With auto-routing on, every public controller method was reachable as a URL.
+- **Every route is behind a filter.** `auth` for anything requiring a session,
+  `role:admin,teacher` for management pages.
+- **CSRF tokens on every state-changing request**, configured globally in
+  `app/Config/Filters.php`.
+- **Deletion is POST-only.** Delete links used to be `GET`, so a crawler, a
+  prefetch or a forged `<img>` tag could destroy records.
+- **Queries are tenant-scoped in the database, not the view.** Reading, editing
+  or deleting another organisation's record returns 404.
+- **Uploads are validated and stored outside the web root.** Extension, sniffed
+  MIME type and size are all checked, and the two must agree — a PHP script
+  renamed `.pdf` is rejected.
+- **All output is escaped** with `esc()`.
 
-PHP version 7.3 or higher is required, with the following extensions installed:
+Before deploying, set `CI_ENVIRONMENT = production`, generate an encryption key
+with `php spark key:generate`, and turn on `app.forceGlobalSecureRequests` and
+`app.cookieSecure`.
 
+## Known gaps
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+- **CodeIgniter 4.1.9 predates PHP 8.2.** Two consequences are worked around in
+  this repository rather than fixed upstream:
+  - `valid_date[Y-m-d]` rejects every date, because
+    `DateTime::getLastErrors()` now returns `false` rather than an array of
+    zero counts when a parse succeeds. `App\Validation\DateRules::iso_date`
+    replaces it, and `tests/app/DateRuleTest.php` fails once the framework is
+    upgraded and the workaround can be removed.
+  - The test harness calls `mb_convert_encoding($html, 'HTML-ENTITIES')`, which
+    is deprecated; `app/Config/Boot/testing.php` excludes `E_DEPRECATED` so the
+    suite reports application failures rather than framework ones.
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+  Upgrading to a current CodeIgniter 4.x release removes both.
+- **`system/` and `vendor/` are committed to the repository.** That is how the
+  project was set up, and it is left alone here, but it makes framework
+  upgrades a manual merge.
+- **`public/uploads/` and `public/csv/` still hold files from the previous
+  version**, which served uploads directly out of the web root. Nothing writes
+  there any more and both now carry a deny-all `.htaccess`, but the leftover
+  files can be deleted once you have confirmed nothing needs them.
+- **Temporary passwords are fixed strings** (`student@123`, `teacher@123`) shown
+  to the administrator when an account is created. A proper invite-by-email flow
+  with a forced password change on first sign-in is the next step; there is no
+  password-change screen yet.
+- **Listings are unpaginated.** Fine for a few hundred rows, not for tens of
+  thousands.
 
-- json (enabled by default - don't turn it off)
-- xml (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
+## Licence
 
-## Running CodeIgniter Tests
-
-Information on running the CodeIgniter test suite can be found in the [README.md](tests/README.md) file in the tests directory.
+MIT. See [LICENSE](LICENSE).

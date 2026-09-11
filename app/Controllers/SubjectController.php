@@ -1,86 +1,92 @@
-<?php 
-namespace App\Controllers;  
-use CodeIgniter\Controller;
+<?php
+
+namespace App\Controllers;
+
 use App\Models\ClassModel;
 use App\Models\SubjectModel;
-use App\Models\StudentModel;
 use App\Models\TeacherModel;
-use App\Models\AdminModel;
 
-
-class SubjectController extends Controller
+class SubjectController extends BaseController
 {
-    public function index(){
-        $TeacherModel = new TeacherModel();
-        $SubjectModel = new SubjectModel();
-        $data['teachers'] = $TeacherModel->orderBy('teacher_id', 'DESC')->findAll();
-        $data['subjects'] = $SubjectModel->orderBy('subject_id', 'DESC')->findAll();
-        return view('subject/manage_subject',$data);
+    private SubjectModel $subjects;
 
-    }
-    public function view_add_subject()
+    public function initController($request, $response, $logger)
     {
-        session();
-        $TeacherModel = new TeacherModel();
-        //$SubjectModel = new SubjectModel();
-        $data['teachers'] = $TeacherModel->orderBy('teacher_id', 'DESC')->findAll();
-        //$data['subjects'] = $SubjectModel->orderBy('subject_id', 'DESC')->findAll();
-		return view('subject/add_subject',$data);
+        parent::initController($request, $response, $logger);
+        $this->subjects = new SubjectModel();
     }
 
-    public function add_subject() {
-        session();
-        $date = date('d-m-y h:i:s');
-        $SubjectModel = new SubjectModel();
-        $data = [
-            
-            'subject_name'        => $this->request->getVar('subject_name'),
-            'teacher_id'        => $this->request->getVar('teacher_id'),
-            'created_at'              =>$date,
-            'updated_at'              =>$date,
-            'admin_id' => $_SESSION['admin']['admin_id']
-            //'class_id' => $_SESSION['class_id']
-            
+    public function index()
+    {
+        return view('subjects/index', [
+            'title'    => 'Subjects',
+            'active'   => 'subjects',
+            'subjects' => $this->subjects->withRelations($this->tenantId()),
+        ]);
+    }
+
+    public function create()
+    {
+        return view('subjects/form', $this->formData(null, 'Add subject'));
+    }
+
+    public function store()
+    {
+        $data = $this->payload() + ['admin_id' => $this->tenantId()];
+
+        if (! $this->subjects->insert($data)) {
+            return $this->failValidation($this->subjects);
+        }
+
+        return redirect()->to(route_to('subjects'))->with('success', 'Subject added.');
+    }
+
+    public function edit(int $id)
+    {
+        $subject = $this->findOwnedOr404($this->subjects, $id);
+
+        return view('subjects/form', $this->formData($subject, 'Edit subject'));
+    }
+
+    public function update(int $id)
+    {
+        $this->findOwnedOr404($this->subjects, $id);
+
+        if (! $this->subjects->update($id, $this->payload())) {
+            return $this->failValidation($this->subjects);
+        }
+
+        return redirect()->to(route_to('subjects'))->with('success', 'Subject updated.');
+    }
+
+    public function delete(int $id)
+    {
+        if (! $this->subjects->deleteOwned($id, $this->tenantId())) {
+            return redirect()->to(route_to('subjects'))->with('error', 'That subject could not be found.');
+        }
+
+        return redirect()->to(route_to('subjects'))->with('success', 'Subject deleted.');
+    }
+
+    private function payload(): array
+    {
+        return [
+            'subject_name' => $this->request->getPost('subject_name'),
+            'teacher_id'   => $this->ownedIdOrNull(new TeacherModel(), $this->request->getPost('teacher_id')),
+            'class_id'     => $this->ownedIdOrNull(new ClassModel(), $this->request->getPost('class_id')),
         ];
-        print_r($data);
-        $SubjectModel->insert($data);
-       // $session->setflashdata('successmsg',"subject added successfully!!!");
-        return $this->response->redirect(base_url('/subjects'));
     }
-    //edit subject
-    public function edit_subject(){
-        session();
-        $date = date('d-m-y h:i:s');
-        $SubjectModel = new SubjectModel();
-        $id = $this->request->getVar('subject_id');
-        $data = [
-            'subject_name'        => $this->request->getVar('subject_name'),
-            'teacher_id'        => $this->request->getVar('teacher_id'),
-            'updated_at'              =>$date,
-            'admin_id' => $_SESSION['admin']['admin_id']
+
+    private function formData(?array $subject, string $title): array
+    {
+        $tenantId = $this->tenantId();
+
+        return [
+            'title'    => $title,
+            'active'   => 'subjects',
+            'subject'  => $subject,
+            'teachers' => (new TeacherModel())->forTenant($tenantId)->orderBy('teacher_name', 'ASC')->findAll(),
+            'classes'  => (new ClassModel())->forTenant($tenantId)->orderBy('class_name', 'ASC')->findAll(),
         ];
-        //print_r($data);
-      $SubjectModel->update($id, $data);
-        return $this->response->redirect(base_url('/subjects'));
-    }  
-    public function SingleSubject($id = null){
-        session();
-        $SubjectModel = new SubjectModel();
-        $data['subject'] = $SubjectModel->where('subject_id', $id)->first();
-        $TeacherModel = new TeacherModel();
-        $data['teachers'] = $TeacherModel->findAll();
-        //echo "<pre>";
-        //print_r($data);
-        return view('subject/edit_subject', $data);
     }
-    //delete subject
-    public function delete_subject($id = null){
-        $session = session();
-        $SubjectModel = new SubjectModel();
-        $data['data_subject'] = $SubjectModel->where('subject_id', $id)->delete($id);
-        $session->setflashdata('errormsg',"subject deleted successfully!!!");
-        return $this->response->redirect(base_url('/subjects'));
-    }
-    
-    
 }
