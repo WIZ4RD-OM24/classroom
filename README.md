@@ -34,6 +34,37 @@ Point your web server at the **`public/`** directory, not the project root —
 everything above `public/` (including `.env` and `writable/`) must stay
 unreachable over HTTP.
 
+### Base URL
+
+`app.baseURL` is what every asset, link and redirect is built from. Left at its
+default it is worked out from the request, so the app runs on whatever host and
+port you serve it from without any configuration — `localhost:8080`,
+`localhost/classroom/public` or anything else.
+
+Guessing is only allowed for loopback and private addresses. On a real
+hostname the app refuses to start until you set the value, because the `Host`
+header is attacker-controlled and a forged one would otherwise end up in the
+links it generates:
+
+```ini
+app.baseURL = 'https://classroom.example.edu/'
+```
+
+### Upgrading a database created before this project had migrations
+
+The original application shipped no migrations, so existing installations have
+a hand-built schema that has drifted from the models. `php spark migrate`
+handles it: `CreateCoreSchema` creates whatever is missing, and
+`ReconcileLegacySchema` repairs the differences that break the application —
+chiefly `assignment_upload`, which described an assignment rather than a
+submission and had no link to either the assignment or the student.
+
+Take a backup first:
+
+```bash
+mysqldump -u root --databases classroom --result-file=classroom-backup.sql
+```
+
 ### Windows with XAMPP
 
 XAMPP ships PHP but does not add it to `PATH`, which is why `php` on its own
@@ -140,7 +171,7 @@ app/
     layouts/       app (signed in) and auth (signed out) shells
     partials/      nav, alerts, icons, theme picker, empty states
   Database/
-    Migrations/    the full schema
+    Migrations/    the full schema, plus the legacy-database reconciliation
     Seeds/         DemoSeeder
 public/
   assets/css/app.css   the whole design system: tokens, accents, components
