@@ -1,77 +1,101 @@
-<?php 
-namespace App\Controllers;  
-use CodeIgniter\Controller;
+<?php
+
+namespace App\Controllers;
+
+use App\Libraries\Auth;
+use App\Libraries\FileStore;
 use App\Models\ClassModel;
-use App\Models\SubjectModel;
-use App\Models\StudentModel;
-use App\Models\TeacherModel;
-use App\Models\AdminModel;
 use App\Models\ClassworkModel;
+use App\Models\SubjectModel;
 
+class ClassworkController extends BaseController
+{
+    private ClassworkModel $classworks;
 
-
-
-class ClassworkController extends Controller
-{  
-    public function index(){
-        session();
-        $ClassworkModel = new ClassworkModel;
-        $data['classworks']= $ClassworkModel->where('admin_id',$_SESSION['admin']['admin_id'])->findAll() ;
-        return view('classwork/manage_classwork',$data);
+    public function initController($request, $response, $logger)
+    {
+        parent::initController($request, $response, $logger);
+        $this->classworks = new ClassworkModel();
     }
 
-    public function view_add_classwork()
+    public function index()
     {
-        session();
-        $ClassModel = new ClassModel();
-        $ClassworkModel = new ClassworkModel();
-        $SubjectModel = new SubjectModel();
-        $data['subjects']= $SubjectModel->where('admin_id',$_SESSION['admin']['admin_id'])->findAll();
-        $data['classes']= $ClassModel->where('admin_id',$_SESSION['admin']['admin_id'])->findAll();
-        return view('classwork/add_classwork',$data);
+        $isStudent = $this->auth->is(Auth::ROLE_STUDENT);
+
+        return view('classworks/index', [
+            'title'      => 'Classwork',
+            'active'     => 'classworks',
+            'classworks' => $this->classworks->withRelations(
+                $this->tenantId(),
+                $this->auth->classId(),
+                $isStudent
+            ),
+        ]);
     }
 
-
-    public function add_classwork(){
+    public function create()
     {
-        session();
-        $date = date('d-m-y h:i:s');
-        $ClassModel = new ClassModel();
-        $SubjectModel = new SubjectModel();
-        $ClassworkModel = new ClassworkModel();
-        //$data['classes']= $ClassworkModel->findAll();
-        $file = $this->request->getFile('classwork_file');
-        $class_id =$this->request->getVar('class_name');
-        $class = $ClassModel->where('class_id',$class_id)->first();
-        $subject_id =$this->request->getVar('subject_name');
-        $subject = $SubjectModel->where('subject_id',$subject_id)->first();
-       if($file->isValid() && !$file->hasMoved()){
-            $classwork_file= $file->getRandomName();
-            $file->move('uploads/classworks/',$classwork_file);
-        }else{
-            $classwork_file = null;
+        $tenantId = $this->tenantId();
+
+        return view('classworks/form', [
+            'title'    => 'Add classwork',
+            'active'   => 'classworks',
+            'classes'  => (new ClassModel())->forTenant($tenantId)->orderBy('class_name', 'ASC')->findAll(),
+            'subjects' => (new SubjectModel())->forTenant($tenantId)->orderBy('subject_name', 'ASC')->findAll(),
+        ]);
+    }
+
+    public function store()
+    {
+        $tenantId = $this->tenantId();
+        $fileName = null;
+
+        $upload = $this->request->getFile('classwork_file');
+
+        if ($upload !== null && $upload->isValid()) {
+            try {
+                $fileName = (new FileStore())->store($upload, 'classworks', $tenantId);
+            } catch (\RuntimeException $e) {
+                return redirect()->back()->withInput()->with('error', $e->getMessage());
+            }
         }
+
         $data = [
-            'classwork_title'    => $this->request->getVar('classwork_title'),
-            'classwork_file'     => $classwork_file,
-            'created_at'      => $date,
-            'updated_at'      => $date,
-            'admin_id'        => $_SESSION['admin']['admin_id'],
-            'class_id'        => $class['class_id'],
-            'subject_id'        => $subject['subject_id'],
-            
+            'classwork_title' => $this->request->getPost('classwork_title'),
+            'classwork_file'  => $fileName,
+            // The old form posted a class *name* into a column expecting an id,
+            // then looked the class up again and dereferenced the result without
+            // checking it — a fatal error whenever the name did not match.
+            'class_id'   => $this->ownedIdOrNull(new ClassModel(), $this->request->getPost('class_id')),
+            'subject_id' => $this->ownedIdOrNull(new SubjectModel(), $this->request->getPost('subject_id')),
+            'admin_id'   => $tenantId,
         ];
-        $ClassworkModel->insert($data);
-        print_r($data);
-        return $this->response->redirect(base_url('/classworks'));
-    }
+
+        if ($this->auth->is(Auth::ROLE_TEACHER)) {
+            $data['teacher_id'] = $this->auth->id();
+        }
+
+        if (! $this->classworks->insert($data)) {
+            (new FileStore())->delete($fileName, 'classworks', $tenantId);
+
+            return $this->failValidation($this->classworks);
+        }
+
+        return redirect()->to(route_to('classworks'))->with('success', 'Classwork added.');
     }
 
-    public function delete_classwork($id = null){
-        $session = session();
-        $ClassworkModel = new ClassworkModel();
-        $ClassworkModel->where('classwork_id', $id)->delete($id);
-        $session->setflashdata('errormsg',"Classwork deleted successfully!!!");
-        return $this->response->redirect(base_url('/classworks'));
+    public function delete(int $id)
+    {
+        $tenantId  = $this->tenantId();
+        $classwork = $this->classworks->findOwned($id, $tenantId);
+
+        if ($classwork === null) {
+            return redirect()->to(route_to('classworks'))->with('error', 'That classwork could not be found.');
+        }
+
+        (new FileStore())->delete($classwork['classwork_file'], 'classworks', $tenantId);
+        $this->classworks->delete($id);
+
+        return redirect()->to(route_to('classworks'))->with('success', 'Classwork deleted.');
     }
 }

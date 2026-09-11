@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Validation\DateRules;
 use CodeIgniter\Validation\CreditCardRules;
 use CodeIgniter\Validation\FileRules;
 use CodeIgniter\Validation\FormatRules;
@@ -24,6 +25,9 @@ class Validation
         FormatRules::class,
         FileRules::class,
         CreditCardRules::class,
+        // Application rules. DateRules::iso_date stands in for the framework's
+        // valid_date, which rejects every date on PHP 8.2 — see that class.
+        DateRules::class,
     ];
 
     /**

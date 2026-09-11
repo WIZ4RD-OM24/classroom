@@ -40,8 +40,10 @@ class Database extends Config
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
-        'charset'  => 'utf8',
-        'DBCollat' => 'utf8_general_ci',
+        // utf8mb4, not MySQL's legacy 3-byte "utf8", which cannot store emoji
+        // or several scripts and truncates at the first such character.
+        'charset'  => 'utf8mb4',
+        'DBCollat' => 'utf8mb4_unicode_ci',
         'swapPre'  => '',
         'encrypt'  => false,
         'compress' => false,
@@ -66,8 +68,8 @@ class Database extends Config
         'DBPrefix' => 'db_',  // Needed to ensure we're working correctly with prefixes live. DO NOT REMOVE FOR CI DEVS
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
-        'charset'  => 'utf8',
-        'DBCollat' => 'utf8_general_ci',
+        'charset'  => 'utf8mb4',
+        'DBCollat' => 'utf8mb4_unicode_ci',
         'swapPre'  => '',
         'encrypt'  => false,
         'compress' => false,

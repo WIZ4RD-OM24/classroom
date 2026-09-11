@@ -43,6 +43,10 @@ class Autoload extends AutoloadConfig
     public $psr4 = [
         APP_NAMESPACE => APPPATH, // For custom app namespace
         'Config'      => APPPATH . 'Config',
+        // The application's own test suite (tests/app). Registered here rather
+        // than only in composer.json so the tests run without a composer
+        // dump-autoload step.
+        'Tests\App' => ROOTPATH . 'tests/app',
     ];
 
     /**

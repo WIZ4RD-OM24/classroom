@@ -5,15 +5,13 @@
     "homepage": "https://codeigniter.com",
     "license": "MIT",
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": "^8.0",
         "ext-curl": "*",
         "ext-intl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
         "kint-php/kint": "^4.0",
         "laminas/laminas-escaper": "^2.9",
-        "mpdf/mpdf": "^8.1",
-        "myth/auth": "^1.0",
         "psr/log": "^1.1"
     },
     "require-dev": {
@@ -52,6 +50,7 @@
     "autoload-dev": {
         "psr-4": {
             "CodeIgniter\\": "tests/system/",
+            "Tests\\App\\": "tests/app/",
             "Utils\\": "utils/"
         }
     },
@@ -61,7 +60,7 @@
             "bash -c \"if [ -f admin/setup.sh ]; then bash admin/setup.sh; fi\""
         ],
         "analyze": "phpstan analyse",
-        "test": "phpunit",
+        "test": "phpunit --testsuite App",
         "cs": [
             "php-cs-fixer fix --verbose --dry-run --diff --config=.no-header.php-cs-fixer.dist.php",
             "php-cs-fixer fix --verbose --dry-run --diff"

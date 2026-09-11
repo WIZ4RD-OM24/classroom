@@ -1,1 +1,21 @@
+# Environment
+.env
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Runtime
 /writable/
+/public/uploads/*
+!/public/uploads/index.html
+/public/csv/*
+!/public/csv/index.html
+
+# OS
+Thumbs.db
+.DS_Store
+
+# PHPUnit
+.phpunit.result.cache

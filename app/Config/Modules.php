@@ -47,7 +47,10 @@ class Modules extends BaseModules
         'events',
         'filters',
         'registrars',
-        'routes',
+        // 'routes' is deliberately not discovered: this application declares
+        // all of its routes in Config\Routes. Leaving discovery on let an
+        // unused vendor package (myth/auth) register its own /login and
+        // /register routes, which shadowed the application's own.
         'services',
     ];
 }

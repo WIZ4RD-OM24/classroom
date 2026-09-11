@@ -1,75 +1,91 @@
-<?php 
-namespace App\Controllers;  
-use CodeIgniter\Controller;
+<?php
+
+namespace App\Controllers;
+
 use App\Models\ClassModel;
-use App\Models\SubjectModel;
-use App\Models\StudentModel;
-use App\Models\TeacherModel;
-use App\Models\AdminModel;
 
-
-
-class ClassController extends Controller
+class ClassController extends BaseController
 {
-    public function index(){
-        session();
-        $ClassModel = new ClassModel();
-        $data['classes'] = $ClassModel->orderBy('class_id', 'DESC')->findAll();
-        return view('class/manage_class',$data);
+    private ClassModel $classes;
+
+    public function initController($request, $response, $logger)
+    {
+        parent::initController($request, $response, $logger);
+        $this->classes = new ClassModel();
     }
 
-    //add class
-    public function add_class() {
-        $session = session(); 
-        $date = date('d-m-y h:i:s');
-        $ClassModel = new ClassModel();
+    public function index()
+    {
+        return view('classes/index', [
+            'title'   => 'Classes',
+            'active'  => 'classes',
+            'classes' => $this->classes->withStudentCounts($this->tenantId()),
+        ]);
+    }
+
+    public function create()
+    {
+        return view('classes/form', [
+            'title'  => 'Add class',
+            'active' => 'classes',
+            'class'  => null,
+        ]);
+    }
+
+    public function store()
+    {
         $data = [
-            'class_name' => $this->request->getVar('class_name'),
-            'section_name'  => $this->request->getVar('section_name'),
-            'created_at'      => $date,
-            'updated_at' =>$date,
-            'admin_id' => $_SESSION['admin']['admin_id']
-        ]; 
-        print_r($data);   
-        $ClassModel->insert($data);
-        $session->setflashdata('successmsg',"Class added successfully!");
-        return $this->response->redirect(base_url('/classes'));
-    }    
-    
-    
-    
-    // delete class
-    public function delete_class($id = null){
-        $session = session();
-        $ClassModel = new ClassModel();
-        $data['class'] = $ClassModel->where('class_id', $id)->delete($id);
-        $session->setflashdata('errormsg',"User deleted successfully!");
-        return $this->response->redirect(base_url('/classes'));
-    }    
-    
-    
-    
-    // edit class data
-    public function update_class(){
-        $ClassModel = new ClassModel();
-        $date = date('d-m-y h:i:s');
-        $id = $this->request->getVar('class_id');
-        $data = [
-            'class_name' => $this->request->getVar('class_name'),
-            'section_name'  => $this->request->getVar('section_name'),
-            'updated_at'   =>$date
+            'class_name'   => $this->request->getPost('class_name'),
+            'section_name' => $this->request->getPost('section_name'),
+            'admin_id'     => $this->tenantId(),
         ];
-        $ClassModel->update($id, $data);
-        return $this->response->redirect(base_url('/classes'));
+
+        if (! $this->classes->insert($data)) {
+            return $this->failValidation($this->classes);
+        }
+
+        return redirect()->to(route_to('classes'))
+            ->with('success', 'Class added.');
     }
-    
-    // show single class
-    public function singleClass($id = null){
-        $ClassModel = new ClassModel();
-        $data['class'] = $ClassModel->where('class_id', $id)->first();
-        //return $this->response->redirect(base_url('/edit-class'));
-        return view('class/edit_class', $data);
-        
+
+    public function edit(int $id)
+    {
+        return view('classes/form', [
+            'title'  => 'Edit class',
+            'active' => 'classes',
+            'class'  => $this->findOwnedOr404($this->classes, $id),
+        ]);
     }
-    
+
+    public function update(int $id)
+    {
+        $this->findOwnedOr404($this->classes, $id);
+
+        $data = [
+            'class_name'   => $this->request->getPost('class_name'),
+            'section_name' => $this->request->getPost('section_name'),
+        ];
+
+        if (! $this->classes->update($id, $data)) {
+            return $this->failValidation($this->classes);
+        }
+
+        return redirect()->to(route_to('classes'))
+            ->with('success', 'Class updated.');
+    }
+
+    /**
+     * Deletion is POST-only and ownership-checked. It used to be a GET link
+     * that deleted any id, from any organisation, without a session.
+     */
+    public function delete(int $id)
+    {
+        if (! $this->classes->deleteOwned($id, $this->tenantId())) {
+            return redirect()->to(route_to('classes'))
+                ->with('error', 'That class could not be found.');
+        }
+
+        return redirect()->to(route_to('classes'))
+            ->with('success', 'Class deleted.');
+    }
 }

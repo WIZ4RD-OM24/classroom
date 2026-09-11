@@ -1,70 +1,95 @@
-<?php 
-namespace App\Controllers;  
-use CodeIgniter\Controller;
+<?php
+
+namespace App\Controllers;
+
+use App\Libraries\Auth;
+use App\Libraries\FileStore;
 use App\Models\ClassModel;
-use App\Models\SubjectModel;
-use App\Models\StudentModel;
-use App\Models\TeacherModel;
-use App\Models\AdminModel;
 use App\Models\NoticeModel;
 
+class NoticeController extends BaseController
+{
+    private NoticeModel $notices;
 
-
-
-class NoticeController extends Controller
-{  
-    public function index(){
-        session();
-        $NoticeModel = new NoticeModel;
-        $data['notices']= $NoticeModel->where('admin_id',$_SESSION['admin']['admin_id'])->findAll() ;
-        return view('notice/manage_notice',$data);
+    public function initController($request, $response, $logger)
+    {
+        parent::initController($request, $response, $logger);
+        $this->notices = new NoticeModel();
     }
 
-    public function view_add_notice()
+    public function index()
     {
-        session();
-        $ClassModel = new ClassModel();
-        $NoticeModel = new NoticeModel();
-        $data['classes']= $ClassModel->where('admin_id',$_SESSION['admin']['admin_id'])->findAll();
-        return view('notice/add_notice',$data);
+        $isStudent = $this->auth->is(Auth::ROLE_STUDENT);
+
+        return view('notices/index', [
+            'title'   => 'Notices',
+            'active'  => 'notices',
+            'notices' => $this->notices->withClass(
+                $this->tenantId(),
+                $this->auth->classId(),
+                $isStudent
+            ),
+        ]);
     }
-    public function add_notice(){
+
+    public function create()
     {
-        session();
-        $date = date('d-m-y h:i:s');
-        $ClassModel = new ClassModel();
-        $NoticeModel = new NoticeModel();
-        //$data['classes']= $NoticeModel->findAll();
-        $file = $this->request->getFile('notice_file');
-//         $class_id =$this->request->getVar('class_name');
-//         $class = $ClassModel->where('class_id',$class_id)->first();
-       if($file->isValid() && !$file->hasMoved()){
-            $notice_file= $file->getRandomName();
-            $file->move('uploads/notices/',$notice_file);
-        }else{
-            $notice_file = null;
+        return view('notices/form', [
+            'title'   => 'Post notice',
+            'active'  => 'notices',
+            'classes' => (new ClassModel())->forTenant($this->tenantId())->orderBy('class_name', 'ASC')->findAll(),
+        ]);
+    }
+
+    public function store()
+    {
+        $tenantId = $this->tenantId();
+        $fileName = null;
+
+        $upload = $this->request->getFile('notice_file');
+
+        if ($upload !== null && $upload->isValid()) {
+            try {
+                $fileName = (new FileStore())->store($upload, 'notices', $tenantId);
+            } catch (\RuntimeException $e) {
+                return redirect()->back()->withInput()->with('error', $e->getMessage());
+            }
         }
+
         $data = [
-            'notice_title'    => $this->request->getVar('notice_title'),
-            'notice_content'  => $this->request->getVar('notice_content'),
-            'notice_file'     => $notice_file,
-            'created_at'      => $date,
-            'updated_at'      => $date,
-            'admin_id'        => $_SESSION['admin']['admin_id'],
-            'class_id'        => $this->request->getVar('class_id'),
-            
+            'notice_title'   => $this->request->getPost('notice_title'),
+            'notice_content' => $this->request->getPost('notice_content'),
+            'notice_file'    => $fileName,
+            // An empty class means the notice goes to the whole organisation.
+            'class_id' => $this->ownedIdOrNull(new ClassModel(), $this->request->getPost('class_id')),
+            'admin_id' => $tenantId,
         ];
-        $NoticeModel->insert($data);
-        //print_r($data);
-        return $this->response->redirect(base_url('/notices'));
-    }
+
+        if ($this->auth->is(Auth::ROLE_TEACHER)) {
+            $data['teacher_id'] = $this->auth->id();
+        }
+
+        if (! $this->notices->insert($data)) {
+            (new FileStore())->delete($fileName, 'notices', $tenantId);
+
+            return $this->failValidation($this->notices);
+        }
+
+        return redirect()->to(route_to('notices'))->with('success', 'Notice posted.');
     }
 
-    public function delete_notice($id = null){
-        $session = session();
-        $NoticeModel = new NoticeModel();
-        $NoticeModel->where('notice_id', $id)->delete($id);
-        $session->setflashdata('errormsg',"subject deleted successfully!!!");
-        return $this->response->redirect(base_url('/notices'));
+    public function delete(int $id)
+    {
+        $tenantId = $this->tenantId();
+        $notice   = $this->notices->findOwned($id, $tenantId);
+
+        if ($notice === null) {
+            return redirect()->to(route_to('notices'))->with('error', 'That notice could not be found.');
+        }
+
+        (new FileStore())->delete($notice['notice_file'], 'notices', $tenantId);
+        $this->notices->delete($id);
+
+        return redirect()->to(route_to('notices'))->with('success', 'Notice deleted.');
     }
 }

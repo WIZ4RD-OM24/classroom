@@ -2,6 +2,9 @@
 
 namespace Config;
 
+use App\Filters\AuthGuard;
+use App\Filters\GuestOnly;
+use App\Filters\RoleGuard;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -21,7 +24,11 @@ class Filters extends BaseConfig
         'csrf'          => CSRF::class,
         'toolbar'       => DebugToolbar::class,
         'honeypot'      => Honeypot::class,
-        'authGuard' => \App\Filters\AuthGuard::class,
+        'invalidchars'  => InvalidChars::class,
+        'secureheaders' => SecureHeaders::class,
+        'auth'          => AuthGuard::class,
+        'role'          => RoleGuard::class,
+        'guest'         => GuestOnly::class,
     ];
 
     /**
@@ -32,14 +39,11 @@ class Filters extends BaseConfig
      */
     public $globals = [
         'before' => [
-            // 'honeypot',
-            // 'csrf',
-            // 'invalidchars',
+            'invalidchars',
         ],
         'after' => [
             'toolbar',
-            // 'honeypot',
-            // 'secureheaders',
+            'secureheaders',
         ],
     ];
 
@@ -47,19 +51,21 @@ class Filters extends BaseConfig
      * List of filter aliases that works on a
      * particular HTTP method (GET, POST, etc.).
      *
-     * Example:
-     * 'post' => ['csrf', 'throttle']
+     * CSRF protection is enforced on every state-changing request. It was
+     * commented out entirely before, which left every form forgeable.
      *
      * @var array
      */
-    public $methods = [];
+    public $methods = [
+        'post'   => ['csrf'],
+        'put'    => ['csrf'],
+        'patch'  => ['csrf'],
+        'delete' => ['csrf'],
+    ];
 
     /**
      * List of filter aliases that should run on any
      * before or after URI patterns.
-     *
-     * Example:
-     * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      *
      * @var array
      */

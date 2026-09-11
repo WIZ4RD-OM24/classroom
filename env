@@ -1,27 +1,37 @@
 #--------------------------------------------------------------------
-# Example Environment Configuration file
+# Environment configuration template
 #
-# This file can be used as a starting point for your own
-# custom .env files, and contains most of the possible settings
-# available in a default install.
+# Copy this file to `.env` in the project root and edit the values.
+# `.env` is git-ignored: it holds per-machine settings and secrets and
+# must never be committed.
 #
-# By default, all of the settings are commented out. If you want
-# to override the setting, you must un-comment it by removing the '#'
-# at the beginning of the line.
+#     cp env .env
+#
+# Settings are commented out by default. Remove the leading '#' to
+# override the matching value in app/Config.
 #--------------------------------------------------------------------
 
 #--------------------------------------------------------------------
 # ENVIRONMENT
 #--------------------------------------------------------------------
+# `development` shows the debug toolbar and full error pages.
+# Use `production` on a live server: it hides stack traces, which would
+# otherwise disclose file paths and query fragments to visitors.
 
-# CI_ENVIRONMENT = production
+CI_ENVIRONMENT = development
 
 #--------------------------------------------------------------------
 # APP
 #--------------------------------------------------------------------
+# baseURL must match how the site is actually reached, including the
+# trailing slash. Point your web server (or virtual host) at the
+# `public/` directory, never at the project root.
 
-# app.baseURL = ''
-# app.forceGlobalSecureRequests = false
+app.baseURL = 'http://localhost:8080/'
+
+# Send cookies only over HTTPS. Turn both of these on in production.
+# app.forceGlobalSecureRequests = true
+# app.cookieSecure = true
 
 # app.sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler'
 # app.sessionCookieName = 'ci_session'
@@ -36,98 +46,42 @@
 #--------------------------------------------------------------------
 # DATABASE
 #--------------------------------------------------------------------
+# MySQL / MariaDB — the default. Create the database first:
+#     CREATE DATABASE classroom CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+# then run `php spark migrate`.
 
-# database.default.hostname = localhost
-# database.default.database = ci4
-# database.default.username = root
-# database.default.password = root
-# database.default.DBDriver = MySQLi
-# database.default.DBPrefix =
+database.default.hostname = localhost
+database.default.database = classroom
+database.default.username = root
+database.default.password = ''
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
 
-# database.tests.hostname = localhost
-# database.tests.database = ci4
-# database.tests.username = root
-# database.tests.password = root
-# database.tests.DBDriver = MySQLi
-# database.tests.DBPrefix =
-
-#--------------------------------------------------------------------
-# CONTENT SECURITY POLICY
-#--------------------------------------------------------------------
-
-# contentsecuritypolicy.reportOnly = false
-# contentsecuritypolicy.defaultSrc = 'none'
-# contentsecuritypolicy.scriptSrc = 'self'
-# contentsecuritypolicy.styleSrc = 'self'
-# contentsecuritypolicy.imageSrc = 'self'
-# contentsecuritypolicy.base_uri = null
-# contentsecuritypolicy.childSrc = null
-# contentsecuritypolicy.connectSrc = 'self'
-# contentsecuritypolicy.fontSrc = null
-# contentsecuritypolicy.formAction = null
-# contentsecuritypolicy.frameAncestors = null
-# contentsecuritypolicy.frameSrc = null
-# contentsecuritypolicy.mediaSrc = null
-# contentsecuritypolicy.objectSrc = null
-# contentsecuritypolicy.pluginTypes = null
-# contentsecuritypolicy.reportURI = null
-# contentsecuritypolicy.sandbox = false
-# contentsecuritypolicy.upgradeInsecureRequests = false
-
-#--------------------------------------------------------------------
-# COOKIE
-#--------------------------------------------------------------------
-
-# cookie.prefix = ''
-# cookie.expires = 0
-# cookie.path = '/'
-# cookie.domain = ''
-# cookie.secure = false
-# cookie.httponly = false
-# cookie.samesite = 'Lax'
-# cookie.raw = false
+# SQLite alternative, for local work without a database server. The
+# value is resolved relative to `writable/`, and must not contain a
+# path separator.
+#
+# database.default.DBDriver = SQLite3
+# database.default.database = classroom.sqlite
 
 #--------------------------------------------------------------------
 # ENCRYPTION
 #--------------------------------------------------------------------
+# Generate with: php spark key:generate
 
 # encryption.key =
-# encryption.driver = OpenSSL
-# encryption.blockSize = 16
-# encryption.digest = SHA512
-
-#--------------------------------------------------------------------
-# HONEYPOT
-#--------------------------------------------------------------------
-
-# honeypot.hidden = 'true'
-# honeypot.label = 'Fill This Field'
-# honeypot.name = 'honeypot'
-# honeypot.template = '<label>{label}</label><input type="text" name="{name}" value=""/>'
-# honeypot.container = '<div style="display:none">{template}</div>'
-
-#--------------------------------------------------------------------
-# SECURITY
-#--------------------------------------------------------------------
-
-# security.csrfProtection = 'cookie'
-# security.tokenRandomize = false
-# security.tokenName = 'csrf_token_name'
-# security.headerName = 'X-CSRF-TOKEN'
-# security.cookieName = 'csrf_cookie_name'
-# security.expires = 7200
-# security.regenerate = true
-# security.redirect = true
-# security.samesite = 'Lax'
 
 #--------------------------------------------------------------------
 # LOGGER
 #--------------------------------------------------------------------
+# 1 = emergency only ... 9 = everything. Use 4 (warnings and worse) in
+# production; 9 is noisy and writes request detail to disk.
 
 # logger.threshold = 4
 
 #--------------------------------------------------------------------
-# CURLRequest
+# CURL
 #--------------------------------------------------------------------
 
-# curlrequest.shareOptions = true
+# curlrequest.shareOptions = false

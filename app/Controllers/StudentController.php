@@ -1,185 +1,242 @@
-<?php 
-namespace App\Controllers;  
-use CodeIgniter\Controller;
+<?php
+
+namespace App\Controllers;
+
+use App\Models\AssignmentUploadModel;
 use App\Models\ClassModel;
-use App\Models\SubjectModel;
 use App\Models\StudentModel;
-use App\Models\TeacherModel;
-use App\Models\AdminModel;
-use App\Models\AssignmentPostModel;
 
+class StudentController extends BaseController
+{
+    private StudentModel $students;
 
+    /**
+     * Password issued to a newly created student. They are expected to change
+     * it; it is at least no longer bypassed at login as it used to be.
+     */
+    private const DEFAULT_PASSWORD = 'student@123';
 
-class StudentController extends Controller
-{  
-    
+    public function initController($request, $response, $logger)
+    {
+        parent::initController($request, $response, $logger);
+        $this->students = new StudentModel();
+    }
+
     public function index()
     {
-        session();
-        $StudentModel = new StudentModel();
-        $data['students'] = $StudentModel->orderBy('student_id', 'ASC')->findAll();
-        return view('student/manage_student',$data);
+        $search = trim((string) $this->request->getGet('q'));
+
+        return view('students/index', [
+            'title'    => 'Students',
+            'active'   => 'students',
+            'students' => $this->students->withClass($this->tenantId(), $search),
+            'search'   => $search,
+        ]);
     }
 
-      public function view_add_student()
-            {
-                session();
-                $ClassModel = new ClassModel();
-                $data['classes'] = $ClassModel->orderBy('class_id', 'DESC')->findAll();
-        		return view('student/add_student',$data);
-            }
+    public function create()
+    {
+        return view('students/form', $this->formData(null, 'Add student'));
+    }
 
-    public function add_student() 
-        {
-            $session = session();
-            $date = date('d-m-y h:i:s');
-            $StudentModel = new StudentModel();
-            $data = [
-                'student_roll_no' => $this->request->getVar('student_roll_no'),
-                'student_name' => $this->request->getVar('student_name'),
-                'student_email'  => $this->request->getVar('student_email'),
-                'student_password' => password_hash("student@123", PASSWORD_DEFAULT),
-                'class_id' => $this->request->getVar('class_id'),
-                'created_at'      => $date,
-                'updated_at' =>$date,
-                'admin_id' => $_SESSION['admin']['admin_id']
-                
-            ];
-           print_r($data);
-            $StudentModel->insert($data);
-            $session->setflashdata('successmsg',"Student added successfully!");
-            return $this->response->redirect(base_url('/students'));
-            
-        }
-        public function add_bulk_student()
-        {
-            session();
-            $input = $this->validate([
-                'file' => 'uploaded[file]|max_size[file,2048]|ext_in[file,csv],'
-            ]);
-            if (!$input) {
-                $data['validation'] = $this->validator;
-                return view('index', $data); 
-            }else{
-                if($file = $this->request->getFile('file')) {
-                if ($file->isValid() && ! $file->hasMoved()) {
-                    $newName = $file->getRandomName();
-                    $file->move('../public/csv', $newName);
-                    $file = fopen('../public/csv/'.$newName,'r');
-                    $i = 0;
-                    $numberOfFields = 3;
-                    $csvArr = array();
-                    
-                    while (($filedata = fgetcsv($file,1000, ',')) !== FALSE) {
-                       // echo "<pre>";
-                       // print_r($filedata);
-                       $date = date('d-m-y h:i:s');
-                        $num = count($filedata);
-                        //echo $num;
-                        if($i > 0 && $num == $numberOfFields){ 
-                            $csvArr[$i]['student_roll_no'] = $filedata[0];
-                            $csvArr[$i]['student_name'] = $filedata[1];
-                            $csvArr[$i]['student_email'] = $filedata[2];
-                            $csvArr[$i]['admin_id'] = $_SESSION['admin']['admin_id'];
-                            $csvArr[$i]['created_at'] = $date;
-                            $csvArr[$i]['updated_at'] =$date;
-                            echo "<pre>";
-                            print_r($csvArr[$i]);
-                        }
-                        $i++;
-                    }
-                    fclose($file);
-                    $count = 0;
-                    foreach($csvArr as $userdata){
-                       // echo "<pre>";
-                        //print_r($userdata);
-                        $students = new StudentModel();
-                        $findRecord = $students->where('student_roll_no', $userdata['student_roll_no'])->countAllResults();
-                        //echo $findRecord;
-                        if($findRecord == 0){
-                            if($students->insert($userdata)){
-                            $count++;
-                            }
-                        }
-                        echo $count;
-                    }
-                    session()->setFlashdata('message', $count.' rows successfully added.');
-                    session()->setFlashdata('alert-class', 'alert-success');
-                }
-                else{
-                    session()->setFlashdata('message', 'CSV file coud not be imported.');
-                    session()->setFlashdata('alert-class', 'alert-danger');
-                }
-                }else{
-                session()->setFlashdata('message', 'CSV file coud not be imported.');
-                session()->setFlashdata('alert-class', 'alert-danger');
-                }
-            }
-            return $this->response->redirect(base_url('/students'));
-            //return redirect()->route('/students');         
-        } 
-        // delete user
-        public function delete_student($student_id = null)
-        {
-        $session = session();
-        $StudentModel = new StudentModel();
-        $data['student'] = $StudentModel->where('student_id', $student_id)->delete($student_id);
-        $session->setflashdata('errormsg',"Student deleted successfully!");
-        echo "<pre>";
-        print_r($data['student_obj']);
-        return $this->response->redirect(base_url('/students'));
-
-        }
-        // update student data
-        public function edit_student(){
-        $StudentModel = new StudentModel();
-        $student_id = $this->request->getVar('student_id');
-        $data = [
-            'roll_no' => $this->request->getVar('roll_no'),
-            'first_name' => $this->request->getVar('fname'),
-            'last_name' => $this->request->getVar('lname'),
-            'created_at'      => $date,
-            'updated_at' =>$date
-            
+    public function store()
+    {
+        $data = $this->payload() + [
+            'admin_id'         => $this->tenantId(),
+            'student_password' => password_hash(self::DEFAULT_PASSWORD, PASSWORD_DEFAULT),
         ];
-        $StudentModel->update($student_id, $data);
-        return $this->response->redirect(base_url('/students'));
-    }
-    // show single user
-    public function singleStudent($student_id = null){
-        $StudentModel = new StudentModel();
-        $data['student'] = $StudentModel->where('student_id', $student_id)->first();
-        return view('student/view_student_profile_by_admin', $data);
-    }
 
-    public function view_assignments(){
-        $AssignmentPostModel = new AssignmentPostModel();
-        $assignments=$AssignmentPostModel->findAll();
-        $data['my_assignments']= $AssignmentPostModel->findAll();
-        echo "<pre>";
-
-        $currentdate=date('Y-m-d');
-
-        $i=0;        foreach($data['my_assignments'] as $val)
-        {
-            $val['assignment_post_due_date'];
-            
-         //   echo "<br>";
-
-            
-  
-   if($val['assignment_post_due_date'] > $currentdate ||  $val['assignment_post_due_date'] == $currentdate)
-   {
-    
-
-      $data1['my_assignments'][$i] = $val;
-   }
-            $i++;
-
+        if (! $this->students->insert($data)) {
+            return $this->failValidation($this->students);
         }
-        
 
-        print_r($data1);
+        return redirect()->to(route_to('students'))
+            ->with('success', 'Student added. Their temporary password is ' . self::DEFAULT_PASSWORD);
+    }
 
+    public function show(int $id)
+    {
+        $student = $this->findOwnedOr404($this->students, $id);
+
+        $class = $student['class_id'] !== null
+            ? (new ClassModel())->findOwned((int) $student['class_id'], $this->tenantId())
+            : null;
+
+        $submissions = (new AssignmentUploadModel())
+            ->select('assignment_upload.*, assignment_post.assignment_post_title')
+            ->join('assignment_post', 'assignment_post.assignment_post_id = assignment_upload.assignment_post_id')
+            ->where('assignment_upload.student_id', $id)
+            ->where('assignment_upload.admin_id', $this->tenantId())
+            ->orderBy('assignment_upload.created_at', 'DESC')
+            ->findAll();
+
+        return view('students/show', [
+            'title'       => $student['student_name'],
+            'active'      => 'students',
+            'student'     => $student,
+            'class'       => $class,
+            'submissions' => $submissions,
+        ]);
+    }
+
+    public function edit(int $id)
+    {
+        $student = $this->findOwnedOr404($this->students, $id);
+
+        return view('students/form', $this->formData($student, 'Edit student'));
+    }
+
+    /**
+     * The previous version of this method referenced an undefined `$date` and
+     * wrote to columns (`roll_no`, `first_name`, `last_name`) that do not exist
+     * on the table, so it could never have worked.
+     */
+    public function update(int $id)
+    {
+        $this->findOwnedOr404($this->students, $id);
+
+        if (! $this->students->update($id, $this->payload())) {
+            return $this->failValidation($this->students);
+        }
+
+        return redirect()->to(route_to('students.show', $id))
+            ->with('success', 'Student updated.');
+    }
+
+    public function delete(int $id)
+    {
+        if (! $this->students->deleteOwned($id, $this->tenantId())) {
+            return redirect()->to(route_to('students'))->with('error', 'That student could not be found.');
+        }
+
+        return redirect()->to(route_to('students'))->with('success', 'Student deleted.');
+    }
+
+    public function importForm()
+    {
+        return view('students/import', [
+            'title'  => 'Import students',
+            'active' => 'students',
+        ]);
+    }
+
+    /**
+     * Bulk import from a CSV of: roll number, name, email.
+     *
+     * Rewritten from a version that echoed every parsed row to the browser,
+     * wrote the file into the web root, checked for duplicates by roll number
+     * across all organisations, and inserted rows with no password at all.
+     */
+    public function import()
+    {
+        if (! $this->validate(['file' => 'uploaded[file]|max_size[file,2048]|ext_in[file,csv]'])) {
+            return redirect()->back()
+                ->with('error', 'Upload a CSV file of 2 MB or less.')
+                ->with('errors', $this->validator->getErrors());
+        }
+
+        $file = $this->request->getFile('file');
+
+        if ($file === null || ! $file->isValid()) {
+            return redirect()->back()->with('error', 'That file could not be read.');
+        }
+
+        $tenantId = $this->tenantId();
+        $handle   = fopen($file->getTempName(), 'r');
+
+        if ($handle === false) {
+            return redirect()->back()->with('error', 'That file could not be read.');
+        }
+
+        $hash     = password_hash(self::DEFAULT_PASSWORD, PASSWORD_DEFAULT);
+        $imported = 0;
+        $skipped  = [];
+        $row      = 0;
+
+        while (($fields = fgetcsv($handle, 4096, ',')) !== false) {
+            $row++;
+
+            // Header row.
+            if ($row === 1) {
+                continue;
+            }
+
+            if (count($fields) < 3) {
+                $skipped[] = "Row {$row}: expected 3 columns (roll number, name, email).";
+
+                continue;
+            }
+
+            [$rollNo, $name, $email] = array_map(static fn ($v) => trim((string) $v), $fields);
+
+            if ($rollNo === '' || $name === '' || $email === '') {
+                $skipped[] = "Row {$row}: blank roll number, name or email.";
+
+                continue;
+            }
+
+            // Duplicates are judged within this organisation, not globally, so
+            // two colleges can both have a student numbered MCA001.
+            $exists = $this->students
+                ->where('admin_id', $tenantId)
+                ->groupStart()
+                ->where('student_roll_no', $rollNo)
+                ->orWhere('student_email', $email)
+                ->groupEnd()
+                ->countAllResults();
+
+            if ($exists > 0) {
+                $skipped[] = "Row {$row}: {$rollNo} / {$email} already exists.";
+
+                continue;
+            }
+
+            $inserted = $this->students->insert([
+                'student_roll_no'  => $rollNo,
+                'student_name'     => $name,
+                'student_email'    => $email,
+                'student_password' => $hash,
+                'admin_id'         => $tenantId,
+            ]);
+
+            if ($inserted) {
+                $imported++;
+            } else {
+                $skipped[] = "Row {$row}: " . implode(' ', $this->students->errors());
+            }
+        }
+
+        fclose($handle);
+
+        $redirect = redirect()->to(route_to('students'))
+            ->with('success', $imported . ' ' . ($imported === 1 ? 'student' : 'students') . ' imported.');
+
+        if ($skipped !== []) {
+            $redirect->with('warning', 'Skipped ' . count($skipped) . ' row(s).')
+                ->with('errors', array_slice($skipped, 0, 15));
+        }
+
+        return $redirect;
+    }
+
+    private function payload(): array
+    {
+        return [
+            'student_roll_no' => $this->request->getPost('student_roll_no'),
+            'student_name'    => $this->request->getPost('student_name'),
+            'student_email'   => $this->request->getPost('student_email'),
+            'student_mobile'  => $this->request->getPost('student_mobile'),
+            'class_id'        => $this->ownedIdOrNull(new ClassModel(), $this->request->getPost('class_id')),
+        ];
+    }
+
+    private function formData(?array $student, string $title): array
+    {
+        return [
+            'title'   => $title,
+            'active'  => 'students',
+            'student' => $student,
+            'classes' => (new ClassModel())->forTenant($this->tenantId())->orderBy('class_name', 'ASC')->findAll(),
+        ];
     }
 }

@@ -17,111 +17,126 @@ if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('DashboardController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+
+// Auto-routing is off. With it on, every public method of every controller was
+// reachable as a URL: /AdminController/loginAuth, /StudentController/add_student
+// and so on bypassed the routes below along with their filters.
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
- * Route Definitions
+ * Guest routes
  * --------------------------------------------------------------------
  */
+$routes->group('', ['filter' => 'guest'], static function ($routes) {
+    $routes->get('login', 'AuthController::showLogin', ['as' => 'login']);
+    $routes->post('login', 'AuthController::login');
+    $routes->get('register', 'AuthController::showRegister', ['as' => 'register']);
+    $routes->post('register', 'AuthController::register');
+});
 
-// We get a performance increase by specifying the default
-// route since we don't have to scan directories.
-$routes->get('/', 'AdminController::index',['filter' => 'authGuard']);
-$routes->get('/view','AdminController::page');
+$routes->post('logout', 'AuthController::logout', ['as' => 'logout']);
 
+/*
+ * --------------------------------------------------------------------
+ * Authenticated routes
+ * --------------------------------------------------------------------
+ *
+ * Every route below requires a session. Routes that change data are POST and
+ * therefore also pass through the CSRF filter configured in Config\Filters.
+ */
+$routes->group('', ['filter' => 'auth'], static function ($routes) {
+    $routes->get('/', 'DashboardController::index', ['as' => 'dashboard']);
 
-//-----------------ADMIN ROUTES------------------------
-$routes->get('/xyz', 'AdminController::signup');
-$routes->get('/signin', 'AdminController::signin');
-$routes->get('/logout','AdminController::logout');
-$routes->get('/admin-profile','AdminController::view_admin');
-$routes->get('/view-edit-admin-profile','AdminController::view_edit_admin_profile');
-$routes->post('/edit-admin-profile','AdminController::edit_profile');
+    // ---- Profile ----------------------------------------------------
+    $routes->get('profile', 'ProfileController::show', ['as' => 'profile']);
+    $routes->get('profile/edit', 'ProfileController::edit', ['as' => 'profile.edit']);
+    $routes->post('profile', 'ProfileController::update');
 
+    // ---- Protected file downloads -----------------------------------
+    // Uploads live outside the web root and are streamed only to members of
+    // the owning organisation.
+    $routes->get('files/(:segment)/(:segment)', 'FileController::show/$1/$2', ['as' => 'file.show']);
 
-//-----------------CLASS ROUTES------------------------
-$routes->get('/classes','ClassController::index',['filter' => 'authGuard']);
-$routes->get('/add-class','ClassController::add_class');
-$routes->get('/view-add-class',function(){session(); return view('class/add_class');});
-$routes->post('/update-class', 'ClassController::update_class');
-$routes->get('/delete-class/(:num)', 'ClassController::delete_class/$1');
-$routes->get('/edit-class/(:num)', 'ClassController::singleClass/$1');
-//$routes->get('/edit-class)', function(){return view('class/edit_class',$data);});
+    // ---- Read-only listings (students may view) ---------------------
+    $routes->get('assignments', 'AssignmentController::index', ['as' => 'assignments']);
+    $routes->get('assignments/(:num)', 'AssignmentController::show/$1', ['as' => 'assignments.show']);
+    $routes->get('notices', 'NoticeController::index', ['as' => 'notices']);
+    $routes->get('classworks', 'ClassworkController::index', ['as' => 'classworks']);
 
+    // ---- Student submissions ----------------------------------------
+    $routes->post('assignments/(:num)/submit', 'AssignmentController::submit/$1', [
+        'as'     => 'assignments.submit',
+        'filter' => 'role:student',
+    ]);
+});
 
-//-----------------STUDENT ROUTES------------------------
-$routes->get('/students','StudentController::index',['filter' => 'authGuard']);
-$routes->get('/add-student','StudentController::add_student');
-$routes->post('/add-bulk-student', 'StudentController::add_bulk_student');
-// $routes->get('/view-add-student',function(){session(); return view('student/add_student');});
-$routes->get('/view-add-student','StudentController::view_add_student',['filter' => 'authGuard']);
-$routes->get('/view-add-bulk-student',function(){session(); return view('student/add_bulk_student');});
-$routes->post('/update-student', 'StudentController::update_student');
-$routes->get('/view-student/(:num)', 'StudentController::singleStudent/$1');
-$routes->get('/delete-student/(:num)', 'StudentController::delete_student/$1');
-$routes->get('/view-student',function(){session(); return view('student/view_student_profile_by_admin');});
+/*
+ * --------------------------------------------------------------------
+ * Management routes (admins and teachers)
+ * --------------------------------------------------------------------
+ */
+$routes->group('', ['filter' => 'role:admin,teacher'], static function ($routes) {
+    // ---- Classes ----------------------------------------------------
+    $routes->get('classes', 'ClassController::index', ['as' => 'classes']);
+    $routes->get('classes/new', 'ClassController::create', ['as' => 'classes.new']);
+    $routes->post('classes', 'ClassController::store', ['as' => 'classes.store']);
+    $routes->get('classes/(:num)/edit', 'ClassController::edit/$1', ['as' => 'classes.edit']);
+    $routes->post('classes/(:num)', 'ClassController::update/$1', ['as' => 'classes.update']);
+    $routes->post('classes/(:num)/delete', 'ClassController::delete/$1', ['as' => 'classes.delete']);
 
+    // ---- Subjects ---------------------------------------------------
+    $routes->get('subjects', 'SubjectController::index', ['as' => 'subjects']);
+    $routes->get('subjects/new', 'SubjectController::create', ['as' => 'subjects.new']);
+    $routes->post('subjects', 'SubjectController::store', ['as' => 'subjects.store']);
+    $routes->get('subjects/(:num)/edit', 'SubjectController::edit/$1', ['as' => 'subjects.edit']);
+    $routes->post('subjects/(:num)', 'SubjectController::update/$1', ['as' => 'subjects.update']);
+    $routes->post('subjects/(:num)/delete', 'SubjectController::delete/$1', ['as' => 'subjects.delete']);
 
-//-----------------SUBJECTS ROUTES------------------------
-$routes->get('/subjects','SubjectController::index',['filter' => 'authGuard']);
-$routes->get('/view-add-subject','SubjectController::view_add_subject',['filter' => 'authGuard']);
-$routes->get('/delete-subject/(:num)', 'SubjectController::delete_subject/$1');
-$routes->get('/edit-subject/(:num)', 'SubjectController::singleSubject/$1');
+    // ---- Students ---------------------------------------------------
+    $routes->get('students', 'StudentController::index', ['as' => 'students']);
+    $routes->get('students/new', 'StudentController::create', ['as' => 'students.new']);
+    $routes->post('students', 'StudentController::store', ['as' => 'students.store']);
+    $routes->get('students/import', 'StudentController::importForm', ['as' => 'students.import']);
+    $routes->post('students/import', 'StudentController::import', ['as' => 'students.import.run']);
+    $routes->get('students/(:num)', 'StudentController::show/$1', ['as' => 'students.show']);
+    $routes->get('students/(:num)/edit', 'StudentController::edit/$1', ['as' => 'students.edit']);
+    $routes->post('students/(:num)', 'StudentController::update/$1', ['as' => 'students.update']);
+    $routes->post('students/(:num)/delete', 'StudentController::delete/$1', ['as' => 'students.delete']);
 
- 
-//-----------------ASSIGNMENT ROUTES----------------------
-$routes->get('/assignments','AssignmentController::index',['filter' => 'authGuard']);
-$routes->get('/view-post-assignment','AssignmentController::view_post_assignment',['filter' => 'authGuard']);
-$routes->post('/post-assignment','AssignmentController::post_assignment');
-$routes->get('/view-assignment/(:num)', 'AssignmentController::edit_assignment/$1');
-$routes->get('/delete-assignment/(:num)', 'AssignmentController::delete_assignment/$1');
+    // ---- Teachers ---------------------------------------------------
+    $routes->get('teachers', 'TeacherController::index', ['as' => 'teachers']);
+    $routes->get('teachers/new', 'TeacherController::create', ['as' => 'teachers.new']);
+    $routes->post('teachers', 'TeacherController::store', ['as' => 'teachers.store']);
+    $routes->get('teachers/(:num)', 'TeacherController::show/$1', ['as' => 'teachers.show']);
+    $routes->get('teachers/(:num)/edit', 'TeacherController::edit/$1', ['as' => 'teachers.edit']);
+    $routes->post('teachers/(:num)', 'TeacherController::update/$1', ['as' => 'teachers.update']);
+    $routes->post('teachers/(:num)/delete', 'TeacherController::delete/$1', ['as' => 'teachers.delete']);
 
-//-----------------TEACHER ROUTES------------------------
-$routes->get('/teachers','TeacherController::index',['filter' => 'authGuard']);
-$routes->get('/add-teacher','TeacherController::add_teacher');
-$routes->get('/view-add-teacher','TeacherController::view_add_teacher',['filter' => 'authGuard']);
-$routes->post('/update-teacher', 'TeacherController::update_teacher');
-$routes->get('/view-teacher/(:num)', 'TeacherController::singleTeacher/$1');
-$routes->get('/delete-teacher/(:num)', 'TeacherController::delete_teacher/$1');
-$routes->get('/view-teacher',function(){session(); return view('teacher/view_teacher_profile_by_admin');});
+    // ---- Assignments ------------------------------------------------
+    $routes->get('assignments/new', 'AssignmentController::create', ['as' => 'assignments.new']);
+    $routes->post('assignments', 'AssignmentController::store', ['as' => 'assignments.store']);
+    $routes->post('assignments/(:num)/delete', 'AssignmentController::delete/$1', ['as' => 'assignments.delete']);
 
+    // ---- Notices ----------------------------------------------------
+    $routes->get('notices/new', 'NoticeController::create', ['as' => 'notices.new']);
+    $routes->post('notices', 'NoticeController::store', ['as' => 'notices.store']);
+    $routes->post('notices/(:num)/delete', 'NoticeController::delete/$1', ['as' => 'notices.delete']);
 
-$routes->get('/stud_view', 'CsvController::index');
-
-
-//-----------------NOTICE ROUTES------------------------
-$routes->get('/notices','NoticeController::index',['filter' => 'authGuard']);
-$routes->get('/view-add-notice','NoticeController::view_add_notice',['filter' => 'authGuard']);
-$routes->post('/add-notice','NoticeController::add_notice');
-$routes->get('/delete-notice/(:num)', 'NoticeController::delete_notice/$1');
-
-
-//-----------------CLASSWORK ROUTES------------------------
-$routes->get('/classworks','ClassworkController::index',['filter' => 'authGuard']);
-$routes->get('/view-add-classwork','ClassworkController::view_add_classwork',['filter' => 'authGuard']);
-$routes->post('/add-classwork','ClassworkController::add_classwork');
-$routes->get('/delete-classwork/(:num)', 'ClassworkController::delete_classwork/$1');
-
-$routes->get('/viewassignment','StudentController::view_assignments');
-
+    // ---- Classwork --------------------------------------------------
+    $routes->get('classworks/new', 'ClassworkController::create', ['as' => 'classworks.new']);
+    $routes->post('classworks', 'ClassworkController::store', ['as' => 'classworks.store']);
+    $routes->post('classworks/(:num)/delete', 'ClassworkController::delete/$1', ['as' => 'classworks.delete']);
+});
 
 /*
  * --------------------------------------------------------------------
  * Additional Routing
  * --------------------------------------------------------------------
- *
- * There will often be times that you need additional routing and you
- * need it to be able to override any defaults in this file. Environment
- * based routes is one such time. require() additional route files here
- * to make that happen.
- *
- * You will have access to the $routes object within that file without
- * needing to reload it.
  */
 if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
