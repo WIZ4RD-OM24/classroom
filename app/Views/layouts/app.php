@@ -21,19 +21,7 @@ $user = $auth->user() ?? [];
   <title><?= esc($title ?? 'Classroom') ?> · Classroom</title>
   <link rel="icon" href="<?= base_url('favicon.ico') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
-  <script>
-    // Applied before first paint so the page never flashes the wrong theme.
-    (function () {
-      try {
-        var saved = localStorage.getItem('classroom.theme');
-        var dark = saved ? saved === 'dark'
-          : window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-      } catch (e) {
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
-    })();
-  </script>
+  <?= view('partials/theme_boot') ?>
 </head>
 <body data-nav="closed">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -73,9 +61,7 @@ $user = $auth->user() ?? [];
 
       <div class="topbar__spacer"></div>
 
-      <button type="button" class="btn btn--icon" data-theme-toggle aria-label="Switch theme">
-        <?= view('partials/icon', ['name' => 'theme']) ?>
-      </button>
+      <?= view('partials/theme_menu') ?>
 
       <div class="menu">
         <button type="button" class="btn btn--icon" data-menu-toggle aria-expanded="false"

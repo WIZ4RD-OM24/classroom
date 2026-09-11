@@ -10,31 +10,36 @@
    1. Tokens
    -------------------------------------------------------------------------- */
 
+/* Themes have two independent axes, so a reader picks a light or dark
+   surface and, separately, the hue everything is tinted with:
+
+     <html data-theme="light|dark" data-accent="indigo|violet|…">
+
+   An accent supplies only a hue, a saturation and two companion hues for the
+   ambient wash. Every brand token is derived from those by varying lightness,
+   which is what keeps a single accent legible on both a white and a near-black
+   surface: light surfaces get a dark solid, dark surfaces a lifted one.
+   Neutrals stay hex — they are not derived from anything. */
+
 :root {
   color-scheme: light;
 
-  /* Neutral ramp */
-  --bg: #f6f7f9;
+  /* Neutral ramp, very slightly cool so the accent wash reads as colour
+     against it rather than fighting a warm grey. */
+  --bg: #f4f6f9;
   --surface: #ffffff;
-  --surface-2: #f2f4f7;
-  --surface-3: #e9ecf1;
-  --border: #e2e6ec;
-  --border-strong: #cdd4de;
+  --surface-2: #f2f4f8;
+  --surface-3: #e8ecf2;
+  --border: #e3e7ee;
+  --border-strong: #cbd2dd;
 
-  /* Text */
-  --text: #14181f;
-  --text-muted: #5c6675;
-  --text-subtle: #8a93a2;
+  --text: #131720;
+  --text-muted: #586272;
+  --text-subtle: #88919f;
   --text-inverse: #ffffff;
 
-  /* Brand + accents */
-  --brand: #4338ca;
-  --brand-hover: #3730a3;
-  --brand-soft: #eef2ff;
-  --brand-text: #4338ca;
-
-  --indigo: #4f46e5;
-  --indigo-soft: #eef2ff;
+  /* Semantic colours keep their meaning in every theme, so the accent never
+     re-tints them: "overdue" must stay red whatever hue is selected. */
   --emerald: #059669;
   --emerald-soft: #ecfdf5;
   --amber: #b45309;
@@ -44,8 +49,23 @@
   --danger: #dc2626;
   --danger-hover: #b91c1c;
   --danger-soft: #fef2f2;
+  --indigo: #4f46e5;
+  --indigo-soft: #eef2ff;
 
-  /* Shape + depth */
+  /* Brand, derived from the accent hue. Lightness is chosen for white text
+     on the solid colour, and a deeper step for text on a light surface. */
+  --brand: hsl(var(--h) var(--s) var(--l-solid, 52%));
+  --brand-hover: hsl(var(--h) var(--s) var(--l-deep, 44%));
+  --brand-text: hsl(var(--h) var(--s) var(--l-deep, 44%));
+  --brand-soft: hsl(var(--h) var(--s) 50% / 0.10);
+  --brand-ring: hsl(var(--h) var(--s) 50% / 0.24);
+  --on-brand: #ffffff;
+
+  /* Opacity of the three ambient wash layers. */
+  --wash-1: 0.10;
+  --wash-2: 0.08;
+  --wash-3: 0.06;
+
   --radius-sm: 6px;
   --radius: 10px;
   --radius-lg: 14px;
@@ -55,12 +75,10 @@
   --shadow: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
   --shadow-lg: 0 12px 28px rgba(16, 24, 40, 0.10), 0 4px 8px rgba(16, 24, 40, 0.05);
 
-  /* Type */
   --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
-  /* Layout */
   --sidebar-w: 260px;
   --header-h: 60px;
 }
@@ -68,26 +86,21 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #0e1116;
-  --surface: #161b22;
-  --surface-2: #1c222b;
-  --surface-3: #252c37;
-  --border: #272e39;
-  --border-strong: #39414e;
+  /* Deep blue-black rather than neutral charcoal, so the wash has something
+     to blend into instead of sitting on top of flat grey. */
+  --bg: #0b0e14;
+  --surface: #141922;
+  --surface-2: #1a202b;
+  --surface-3: #232a37;
+  --border: #252c3a;
+  --border-strong: #38414f;
 
-  --text: #e7ebf0;
-  --text-muted: #9aa5b4;
-  --text-subtle: #6f7b8b;
+  --text: #e8ecf2;
+  --text-muted: #9aa4b4;
+  --text-subtle: #6d7889;
 
-  --brand: #818cf8;
-  --brand-hover: #a5b4fc;
-  --brand-soft: #1e213a;
-  --brand-text: #a5b4fc;
-
-  --indigo: #818cf8;
-  --indigo-soft: #1e213a;
   --emerald: #34d399;
-  --emerald-soft: #0f2a22;
+  --emerald-soft: #0e2a21;
   --amber: #fbbf24;
   --amber-soft: #2a2113;
   --rose: #fb7185;
@@ -95,10 +108,108 @@
   --danger: #f87171;
   --danger-hover: #fca5a5;
   --danger-soft: #2d1618;
+  --indigo: #818cf8;
+  --indigo-soft: #1e213a;
+
+  /* Lifted well clear of the surface: a 52%-lightness accent that works on
+     white is close to invisible on near-black.
+
+     The solid carries dark text here rather than white, which is why it has
+     to be this bright — a mid-lightness blue is the worst case for contrast,
+     failing against white and dark alike. --l-dark is tuned per accent, since
+     blues and violets read much darker than greens at the same value. */
+  --brand: hsl(var(--h) var(--s) var(--l-dark, 62%));
+  --brand-hover: hsl(var(--h) var(--s) calc(var(--l-dark, 62%) + 8%));
+  --brand-text: hsl(var(--h) calc(var(--s) - 10%) 74%);
+  --brand-soft: hsl(var(--h) var(--s) 60% / 0.18);
+  --brand-ring: hsl(var(--h) var(--s) 60% / 0.38);
+  --on-brand: #0b0e14;
+
+  --wash-1: 0.22;
+  --wash-2: 0.17;
+  --wash-3: 0.13;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.55);
+}
+
+/* --------------------------------------------------------------------------
+   1b. Accents
+   --------------------------------------------------------------------------
+   Adding a theme means adding one block here — nothing else in the sheet
+   names a hue. The two wash hues sit a good distance around the wheel from
+   the brand so the background reads as a gradient between two colours rather
+   than a smear of one.
+
+   --l-solid / --l-deep override the default lightness where a hue needs it:
+   yellows and greens have to sit much darker than blues to hold white text. */
+
+:root,
+:root[data-accent="indigo"] {
+  --h: 243;
+  --s: 68%;
+  --l-dark: 72%;
+  --wash-a: 243;
+  --wash-b: 194;
+}
+
+:root[data-accent="violet"] {
+  --h: 272;
+  --s: 62%;
+  --l-dark: 70%;
+  --wash-a: 280;
+  --wash-b: 326;
+}
+
+:root[data-accent="teal"] {
+  --h: 182;
+  --s: 68%;
+  --l-solid: 30%;
+  --l-deep: 25%;
+  --wash-a: 176;
+  --wash-b: 210;
+}
+
+:root[data-accent="emerald"] {
+  --h: 158;
+  --s: 68%;
+  --l-solid: 30%;
+  --l-deep: 25%;
+  --wash-a: 152;
+  --wash-b: 96;
+}
+
+:root[data-accent="amber"] {
+  --h: 30;
+  --s: 84%;
+  --l-solid: 36%;
+  --l-deep: 31%;
+  --wash-a: 38;
+  --wash-b: 8;
+}
+
+:root[data-accent="rose"] {
+  --h: 342;
+  --s: 70%;
+  --l-dark: 66%;
+  --l-solid: 48%;
+  --l-deep: 40%;
+  --wash-a: 346;
+  --wash-b: 22;
+}
+
+/* The quiet option: almost no colour anywhere, for readers who want the
+   chrome to get out of the way. Its wash is desaturated to match, or the
+   background would still glow blue. */
+:root[data-accent="slate"] {
+  --h: 216;
+  --s: 22%;
+  --l-solid: 36%;
+  --l-deep: 28%;
+  --wash-a: 216;
+  --wash-b: 200;
+  --wash-s: 24%;
 }
 
 /* --------------------------------------------------------------------------
@@ -123,6 +234,25 @@ body {
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+}
+
+/* The ambient wash: three wide, soft radial gradients in the accent's two
+   companion hues, blending into each other and into the flat background.
+   It sits on a fixed pseudo-element behind everything, so it stays put while
+   the page scrolls and never tints a card or a table row — those keep their
+   own opaque --surface, which is what keeps text contrast predictable.
+   Opacity comes from --wash-*, which the dark theme raises, since the same
+   alpha that is plainly visible on near-white vanishes on near-black. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(58rem 40rem at 6% -12%, hsl(var(--wash-a) var(--wash-s, 85%) 55% / var(--wash-1)), transparent 62%),
+    radial-gradient(46rem 34rem at 102% 4%, hsl(var(--wash-b) var(--wash-s, 80%) 52% / var(--wash-2)), transparent 58%),
+    radial-gradient(52rem 38rem at 48% 112%, hsl(var(--wash-a) var(--wash-s, 75%) 58% / var(--wash-3)), transparent 60%);
 }
 
 h1, h2, h3, h4, h5, h6, p, figure {
@@ -179,7 +309,7 @@ a:hover {
   z-index: 200;
   padding: 10px 16px;
   background: var(--brand);
-  color: var(--text-inverse);
+  color: var(--on-brand);
   border-radius: 0 0 var(--radius) 0;
 }
 
@@ -195,16 +325,29 @@ a:hover {
   min-height: 100vh;
 }
 
+/* Translucent so the ambient wash reads through the chrome. The blur keeps
+   text crisp over whatever it overlaps; where backdrop-filter is
+   unsupported the colour-mix still resolves to a mostly-opaque surface. */
 .sidebar {
   position: fixed;
   inset: 0 auto 0 0;
   width: var(--sidebar-w);
   display: flex;
   flex-direction: column;
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  backdrop-filter: blur(14px);
   border-right: 1px solid var(--border);
   z-index: 60;
   transition: transform 0.22s ease;
+}
+
+/* The open drawer sits over page content on small screens, so it needs to
+   be opaque there. */
+@media (max-width: 900px) {
+  .sidebar {
+    background: var(--surface);
+    backdrop-filter: none;
+  }
 }
 
 .sidebar__brand {
@@ -232,7 +375,7 @@ a:hover {
   height: 30px;
   border-radius: 8px;
   background: var(--brand);
-  color: #fff;
+  color: var(--on-brand);
   font-size: 14px;
   flex: 0 0 auto;
 }
@@ -430,7 +573,7 @@ a:hover {
 .btn--primary {
   background: var(--brand);
   border-color: var(--brand);
-  color: #fff;
+  color: var(--on-brand);
 }
 
 .btn--primary:hover {
@@ -793,7 +936,7 @@ table.table {
 .textarea:focus {
   outline: none;
   border-color: var(--brand);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 18%, transparent);
+  box-shadow: 0 0 0 3px var(--brand-ring);
 }
 
 .textarea {
@@ -968,6 +1111,113 @@ table.table {
 }
 
 /* --------------------------------------------------------------------------
+   9b. Theme picker
+   -------------------------------------------------------------------------- */
+
+.theme-menu {
+  width: 248px;
+  padding: 12px;
+}
+
+.theme-menu__label {
+  font-size: 11px;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 8px;
+}
+
+/* Segmented control for light / dark / system. */
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.segmented button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 4px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 550;
+  cursor: pointer;
+  transition: background 0.14s ease, color 0.14s ease;
+}
+
+.segmented button svg {
+  width: 14px;
+  height: 14px;
+}
+
+.segmented button:hover {
+  color: var(--text);
+}
+
+.segmented button[aria-pressed="true"] {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Accent swatches. Each renders its own hue by setting --h/--s locally, so
+   the swatch always shows the theme it selects rather than the active one. */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.swatch {
+  position: relative;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  background: linear-gradient(
+    140deg,
+    hsl(var(--sw-a) var(--sw-s, 82%) 58%),
+    hsl(var(--sw-b) var(--sw-s, 78%) 50%)
+  );
+  box-shadow: inset 0 0 0 1px hsl(0 0% 0% / 0.10);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.swatch:hover {
+  transform: scale(1.12);
+}
+
+.swatch[aria-pressed="true"] {
+  box-shadow:
+    inset 0 0 0 1px hsl(0 0% 0% / 0.10),
+    0 0 0 2px var(--surface),
+    0 0 0 4px var(--brand);
+}
+
+.swatch--indigo  { --sw-a: 243; --sw-b: 194; }
+.swatch--violet  { --sw-a: 280; --sw-b: 326; }
+.swatch--teal    { --sw-a: 176; --sw-b: 210; }
+.swatch--emerald { --sw-a: 152; --sw-b: 96; }
+.swatch--amber   { --sw-a: 38;  --sw-b: 8; }
+.swatch--rose    { --sw-a: 346; --sw-b: 22; }
+/* Slate is the deliberately muted option, so its swatch has to look muted
+   too — at the shared saturation it just reads as another blue. */
+.swatch--slate   { --sw-a: 216; --sw-b: 200; --sw-s: 16%; }
+
+/* --------------------------------------------------------------------------
    10. Lists (notices, assignments, classwork)
    -------------------------------------------------------------------------- */
 
@@ -1047,15 +1297,27 @@ table.table {
    11. Auth screens
    -------------------------------------------------------------------------- */
 
+/* The sign-in screen leans on the same wash, turned up: there is no content
+   competing with it here, so it can carry the page. */
 .auth {
   min-height: 100vh;
   display: grid;
   place-items: center;
   padding: 32px 16px;
   background:
-    radial-gradient(1100px 520px at 12% -8%, color-mix(in srgb, var(--brand) 14%, transparent), transparent 60%),
-    radial-gradient(900px 460px at 105% 105%, color-mix(in srgb, var(--emerald) 11%, transparent), transparent 60%),
+    radial-gradient(64rem 34rem at 10% -10%, hsl(var(--wash-a) var(--wash-s, 85%) 55% / calc(var(--wash-1) * 1.8)), transparent 62%),
+    radial-gradient(52rem 30rem at 104% 106%, hsl(var(--wash-b) var(--wash-s, 80%) 52% / calc(var(--wash-2) * 1.8)), transparent 58%),
     var(--bg);
+}
+
+/* The picker is available before signing in too, so a reader whose OS
+   preference does not suit them is not stuck with it on the one screen they
+   have to use. */
+.auth__tools {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 80;
 }
 
 .auth__card {
